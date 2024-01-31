@@ -31,30 +31,26 @@ export default function Carddisplay({ props }) {
               >
                 {props.data.creator}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
-              </Typography>
+              <Typography variant="body2" color="text.secondary"></Typography>
               <Typography variant="body2" color="text.secondary">
                 {props.data.name}
               </Typography>
               <div className="card-flex-button">
                 {props.data.tags && props.data.tags.includes("kode") && (
-                  <span className="tag-template" variant="outlined">
-                    <p>Kode</p>
-                  </span>
+                  <p className="tag-template" variant="outlined">
+                    Kode
+                  </p>
+                )}
+
+                {props.data.tags && props.data.tags.includes("interaktiv") && (
+                  <p className="tag-quiz">Interaktiv</p>
                 )}
 
                 {props.data.tags &&
-                  props.data.tags.includes("interaktiv") && (
-                    <span className="tag-quiz" variant="outlined">
-                      <p>Interaktiv</p>
-                    </span>
-                  )}
-
-                {props.data.tags &&
                   props.data.tags.includes("multiplechoice") && (
-                    <span className="tag-video" variant="outlined">
-                      <p>Multiplechoice</p>
-                    </span>
+                    <p className="tag-video" variant="outlined">
+                      Multiplechoice
+                    </p>
                   )}
               </div>
             </CardContent>
