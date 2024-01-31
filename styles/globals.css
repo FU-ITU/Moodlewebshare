@@ -382,7 +382,7 @@ input[type='checkbox'] {
       border-width: 1px;
       border-color: #6f74734f;
       width: 100%;
-      display: flex;
+      display: flex!important;
       justify-content: center;
 
       }
