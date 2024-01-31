@@ -22,14 +22,13 @@ export default function Home() {
             </p>
           </div>
           <div className="frontpage-right ">
-            <Image
+            <img
               alt="frontpage"
-              loading="lazy"
               src="./fuinner.png"
               width="600"
               height="300"
               className="fuinner rotate"
-            ></Image>
+            ></img>
 
           </div>
         </div>
