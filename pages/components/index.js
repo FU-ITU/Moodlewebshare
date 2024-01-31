@@ -29,7 +29,7 @@ export default function ComponentsPage({ props }) {
                 <CardMedia
                   component="img"
                   height="200"
-                  image="/template.png"
+                  image="./template.png"
                   alt="card-content"
                 />
                 <CardContent>
@@ -49,7 +49,7 @@ export default function ComponentsPage({ props }) {
                 <CardMedia
                   component="img"
                   height="200"
-                  image="/quiz.png"
+                  image="./quiz.png"
                   alt="card-content"
                 />
                 <CardContent>
@@ -66,7 +66,7 @@ export default function ComponentsPage({ props }) {
                 <CardMedia
                   component="img"
                   height="200"
-                  image="/video.png"
+                  image="./video.png"
                   alt="card-content"
                 />
                 <CardContent>

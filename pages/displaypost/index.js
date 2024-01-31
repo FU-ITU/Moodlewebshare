@@ -29,7 +29,7 @@ function DisplayPost({ props }) {
                   {contentItem.type === "Imagecontent" && (
                     <div>
                       <h4>Image content</h4>
-                      <img src={"/images/" + contentItem.content} alt="Image" />
+                      <img src={"./images/" + contentItem.content} alt="Image" />
                     </div>
                   )}
 

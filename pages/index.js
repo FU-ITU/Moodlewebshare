@@ -25,7 +25,7 @@ export default function Home() {
             <Image
               alt="frontpage"
               loading="lazy"
-              src="/fuinner.png"
+              src="./fuinner.png"
               width="600"
               height="300"
               className="fuinner rotate"

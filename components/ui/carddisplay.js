@@ -18,7 +18,7 @@ export default function Carddisplay({ props }) {
             <CardMedia
               component="img"
               height="30"
-              image="/texture.jpg"
+              image="./texture.jpg"
               alt="card-content"
               loading="lazy"
             />
