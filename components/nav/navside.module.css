@@ -1,0 +1,10 @@
+.nav {
+    background-color: blue;
+    width: 30%;
+
+    .sideNavigation {
+        display: flex;
+        flex-direction: column;
+        font-size: 1.5em;
+    }
+}
