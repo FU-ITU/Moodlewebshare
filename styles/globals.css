@@ -384,6 +384,7 @@ input[type='checkbox'] {
       width: 100%;
       display: flex;
       justify-content: center;
+      display: flex;
 
       .tag-template,
       .tag-quiz,
@@ -393,7 +394,6 @@ input[type='checkbox'] {
         border-width: 1.3px;
         margin: 1%;
         border-radius: 6px;
-        width:25%;
         text-align: center;
       }
 
