@@ -3,130 +3,95 @@
     background-color: #032b43;
     width: 10%;
     min-height: 100vh;
-    position: relative;
+    position: fixed;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     border-top-right-radius: 30px;
     max-height: 100vh;
-    position: fixed;
     min-width: 120px;
     left: 0;
     z-index: 99999999;
+}
 
+.sideNavigation {
+    padding: 10% 2%;
+    display: flex;
+    font-size: 0.6rem;
+    flex-direction: column;
+    align-items: flex-start;
+    transform: translateY(25%);
+    width: 100%;
+    overflow: hidden;
+}
 
-    .sideNavigation {
-        padding: 10% 2%;
-        display: flex;
-        font-size: 0.6rem;
-        flex-direction: column;
-        align-items: flex-start;
-        transform: translatey(25%);
-        width: 100%;
-        overflow: hidden;
+.sideNavigation a {
+    text-decoration: none;
+    color: aliceblue;
+    width: 69%;
+    padding: 2% 10% 5%;
+    margin-top: 1%;
+    transition: .3s;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+}
 
+.sideNavigation a:hover {
+    transform: scale(1.2);
+    background-color: #168b7c;
+}
 
+.sideNavigation a:hover ~ a:not(:hover) {
+    filter: grayscale(100%);
+    opacity: 0.75;
+}
 
+.sideNavigation a:hover:after {
+    background-color: rgba(0, 0, 0, 0.5);
+}
 
+.sideNavigation a:after {
+    background-color: rgba(0, 0, 0, 0);
+    transition: .3s;
+}
 
-        a {
-            text-decoration: none;
-            /* background-color: #136F63; */
-            color: aliceblue;
-            width: 69%;
-            padding: 2% 10% 5%;
-            margin-top: 1%;
-            transition: .3s;
+.profile-section {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
 
+.profile-section button {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    border-radius: none;
+    border: none;
+    padding: 5% 5% 5%;
+    background-color: #06314b;
+    color: aliceblue;
+    transition: .2s;
+}
 
-        }
+.profile-section button:hover {
+    background-color: #168b7c;
+}
 
-        a:hover {
-            transform: scale(1.2);
-            background-color: #168b7c;
-        }
+.profile-top-section {
+    background: #168b7c;
+    font-size: 0.7em;
+    color: aliceblue;
+    text-align: center;
+    border-top-right-radius: 10px;
+    word-wrap: break-word;
+}
 
-        a {
-            position: relative;
-            cursor: pointer;
-            transition: .3s;
-        }
-
-        a:hover a:not(:hover) {
-            filter: grayscale(100%);
-            opacity: 0.75;
-        }
-
-        a:hover a:not(:hover)::after {
-            background-color: rgba(#000, 0.5);
-        }
-
-
-        a:after {
-            background-color: rgba(#000, 0);
-            transition: .3s;
-        }
-
-
-
-
-    }
-
-    a {
-        padding: 1% 0% 5%;
-        max-width: 100%;
-        height: 20%;
-        max-height: 25px;
-    }
-
-    .profile-section {
-        display: flex;
-        justify-content: flex-end;
-        align-items: flex-end;
-
-        button {
-            bottom: 0;
-            position: absolute;
-            width: 100%;
-            border-radius: none;
-            border: none;
-            padding: 5% 5% 5%;
-            background-color: #06314b;
-            color: aliceblue;
-            transition: .2s;
-
-
-        }
-
-        button:hover {
-            background-color: #168b7c;
-        }
-    }
-
-    .profile-top-section {
-        background: #168b7c;
-        font-size: 0.7em;
-        color: aliceblue;
-        text-align: center;
-        border-top-right-radius: 10px;
-        word-wrap: break-word;
-
-    }
-
-    .nav-link {
-        display: flex;
-        justify-content: flex-start;
-
-        p {
-            padding: 0 5% 0;
-
-
-        }
-    }
+.nav-link p {
+    padding: 0 5% 0;
 }
 
 .nav-subpage {
-
     display: flex;
     width: 10%;
     justify-content: flex-end;
@@ -134,32 +99,25 @@
     position: fixed;
     right: 0;
     margin-right: 15%;
+}
 
-    a {
-        text-decoration: none;
-        color: #000;
-
-    }
-
-
+.nav-subpage a {
+    text-decoration: none;
+    color: #000;
     font-size: 1em;
+}
 
-    .sideNavigation-subpage {}
-
-    .sub-border {
-        border-bottom: #168b7b67;
-        border-width: 0.12em;
-        border-bottom-style: solid;
-    }
+.sub-border {
+    border-bottom: #168b7b67;
+    border-width: 0.12em;
+    border-bottom-style: solid;
 }
 
 .mobile-navigation {
     display: none;
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 1200px) {
-
     .mobile-navigation {
         display: none;
         background-color: #032b43;
@@ -168,41 +126,32 @@
         justify-content: flex-start;
         align-items: flex-start;
         height: 100%;
-        a{
-            display: flex;
-        }
-        .center-h1{
-            text-align: center;
-        }
     }
 
-    .burger-icon{
-        font-size: 3em!important;
+    .burger-icon {
+        font-size: 3em !important;
         padding: 2%;
-        color:#032b43;
+        color: #032b43;
     }
 
-    a {
+    .mobile-navigation a {
         color: aliceblue;
-      
         justify-content: flex-start;
         align-items: center;
         padding: 2% 2% 2%;
-        margin:0;
+        margin: 0;
         border-bottom: solid;
         border-color: rgba(240, 248, 255, 0.075);
         width: 100%;
         border-width: 1px;
         text-decoration: none;
-        p{
-            margin: 0;
-        }
     }
 
-    .nav {
-        display: none;
+    .mobile-navigation a p {
+        margin: 0;
     }
 
+    .nav,
     .sideNavigation-subpage {
         display: none;
     }
@@ -212,9 +161,6 @@
         min-height: 10px !important;
         padding: 2% 0% 5% !important;
     }
-
-    
-
 
     .profile-top-section {
         display: none;
@@ -246,40 +192,31 @@
     }
 
     .form {
-        padding: 2%
+        padding: 2%;
     }
 
     .MuiBox-root {
         width: 70% !important;
-
     }
 
     .html-content-wrap,
     p {
-    
-        padding: 2%
+        padding: 2%;
     }
 
     textarea {
         height: 100px;
     }
-
 }
 
-/* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-
     .nav {
         display: none;
     }
-
 }
 
-/* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-
     .nav {
         display: flex;
-
     }
 }

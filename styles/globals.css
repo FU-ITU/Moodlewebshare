@@ -12,14 +12,6 @@ html,.content {
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 .rotate {
   animation: rotation 15s infinite ease-in-out;
   z-index: -999;
