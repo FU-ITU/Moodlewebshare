@@ -4,8 +4,6 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
-import { Button } from "@mui/material";
-import { Spa } from "@mui/icons-material";
 
 export default function Carddisplay({ props }) {
   // let link = "/updatepost?id=" + props.id;
@@ -15,14 +13,42 @@ export default function Carddisplay({ props }) {
       <Link className="post-link" href={link} props={props}>
         <Card sx={{ maxWidth: 4 / 4 }}>
           <CardActionArea>
-            <CardMedia
-              component="img"
-              height="30"
-              image="./texture.jpg"
-              alt="card-content"
-              loading="lazy"
-            />
+            {props.data.category &&
+              props.data.category.includes("kategori1") && (
+                <CardMedia
+                  component="img"
+                  height="30"
+                  image="./templateblue.png"
+                  alt="card-content"
+                  loading="lazy"
+                />
+              )}
+            {props.data.category &&
+              props.data.category.includes("kategori2") && (
+                <CardMedia
+                  component="img"
+                  height="30"
+                  image="./templatepink.png"
+                  alt="card-content"
+                  loading="lazy"
+                />
+              )}
+
+            {props.data.category &&
+              props.data.category.includes("kategori3") && (
+                <CardMedia
+                  component="img"
+                  height="30"
+                  image="./templatered.png"
+                  alt="card-content"
+                  loading="lazy"
+                />
+              )}
+
             <CardContent>
+              <Typography variant="body2" color="text.secondary">
+                {props.data.name}
+              </Typography>
               <Typography
                 gutterBottom
                 sx={{ maxWidth: 4 / 4 }}
@@ -31,9 +57,9 @@ export default function Carddisplay({ props }) {
               >
                 {props.data.creator}
               </Typography>
-              <Typography variant="body2" color="text.secondary"></Typography>
-              <Typography variant="body2" color="text.secondary">
-                {props.data.name}
+
+              <Typography variant="h6" color="text.secondary">
+                {props.data.category}
               </Typography>
               <div className="card-flex-button">
                 {props.data.tags && props.data.tags.includes("kode") && (

@@ -38,8 +38,9 @@ export default function FrontPage(props) {
             <div className="search-panel">
               <Search data={Data} query={changeQuery}></Search>
             </div>
-            <h1 className="center-h1">Her er hvad vi fandt...</h1>
+
             <div className="frontpage-grid">
+              <h1 className="center-h1">Her er hvad vi fandt...</h1>
               {Query.map(function (Query, key = 0) {
                 key++;
                 return <Carddisplay key={key} props={Query}></Carddisplay>;
@@ -54,9 +55,9 @@ export default function FrontPage(props) {
           <div className="search-panel">
             <Search data={Data} query={changeQuery}></Search>
           </div>
-       
+
           <div className="frontpage-grid">
-          <h2 className="center-h1">Alle eksempler</h2>
+            <h2 className="center-h1">Alle eksempler</h2>
             {Data.result.map(function (Data, key = 0) {
               key++;
               return <Carddisplay key={key} props={Data}></Carddisplay>;
@@ -76,8 +77,8 @@ export default function FrontPage(props) {
   } else whoami = "Du er ikke logget ind ";
   return (
     <>
-    <div className="frontpage-grid">
-      <h1>{whoami} </h1>
+      <div className="frontpage-grid">
+        <h1>{whoami} </h1>
       </div>
     </>
   );
