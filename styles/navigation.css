@@ -42,7 +42,7 @@
     background-color: #168b7c;
 }
 
-.sideNavigation a:hover ~ a:not(:hover) {
+.sideNavigation a:hover~a:not(:hover) {
     filter: grayscale(100%);
     opacity: 0.75;
 }
@@ -136,6 +136,7 @@
 
     .mobile-navigation a {
         color: aliceblue;
+        display: flex;
         justify-content: flex-start;
         align-items: center;
         padding: 2% 2% 2%;
@@ -149,7 +150,18 @@
 
     .mobile-navigation a p {
         margin: 0;
+
     }
+
+    .html-content-wrap {
+     
+    
+        p {
+          width: 100%!important;
+          font-size: 0.8em;
+          margin: 0;
+        }
+      }
 
     .nav,
     .sideNavigation-subpage {
