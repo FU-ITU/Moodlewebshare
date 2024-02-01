@@ -1,7 +1,7 @@
 /* style imports */
 @import "../styles/navigation.css";
 
-html {
+html,.content {
   min-height: 100vh;
   min-height: 100%;
 }
@@ -153,11 +153,10 @@ input[type='checkbox'] {
 }
 
 .content {
-  display: flex;
-  flex-wrap: wrap;
   font-size: 0.7em;
   justify-content: flex-start;
   width: 100%;
+  min-height: 100vh;
   background-color: rgba(253, 251, 251, 0.685);
 
   .wrapper {
@@ -166,7 +165,7 @@ input[type='checkbox'] {
   }
 
   .wrapper-create {
-    width: 100%;
+    width: 70%;
 
     fieldset {
       padding: 4%;
@@ -357,7 +356,7 @@ input[type='checkbox'] {
 }
 
 .frontpage-grid {
-  padding: 5% 20% 5%;
+  padding: 5% 15% 5%;
   display: flex;
   flex-wrap: wrap;
   width: 80%;
@@ -476,9 +475,9 @@ input[type='checkbox'] {
   }
 
   display: flex;
-  justify-content: space-around;
+  margin-top: 10%;
+  justify-content: center;
   align-items: center;
-  transform: translate(10%, 22%);
   flex-wrap: wrap;
   width: 100%;
 
