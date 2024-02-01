@@ -145,7 +145,7 @@ input[type='checkbox'] {
 }
 
 .content {
-  font-size: 0.7em;
+  font-size: 1em;
   justify-content: flex-start;
   width: 100%;
   min-height: 100vh;
