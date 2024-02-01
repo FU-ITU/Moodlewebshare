@@ -2,7 +2,8 @@
 import React from "react";
 import signIn from "@/firebase/auth/signin";
 import { useRouter } from "next/navigation";
-
+import Link from "next/link";
+import Login from "@mui/icons-material/Login";
 function Page() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -10,9 +11,7 @@ function Page() {
 
   const handleForm = async (event) => {
     event.preventDefault();
-
     const { result, error } = await signIn(email, password);
-
     if (error) {
       return console.log(error);
     }
@@ -23,33 +22,35 @@ function Page() {
   };
   return (
     <div className="frontpage-grid">
+      {/* <img className="login-img" src="../images/background.jpg"></img> */}
       <div className="wrapper">
         <div className="form-wrapper-signin">
-          <h1 className="mt-60 mb-30">Sign in</h1>
           <form onSubmit={handleForm} className="form">
-            <label htmlFor="email">
-              <p>Email</p>
-              <input
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                type="email"
-                name="email"
-                id="email"
-                placeholder="example@mail.com"
-              />
-            </label>
-            <label htmlFor="password">
-              <p>Password</p>
-              <input
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                type="password"
-                name="password"
-                id="password"
-                placeholder="password"
-              />
-            </label>
+            <h1>Log ind</h1>
+
+            <input
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              type="email"
+              name="email"
+              id="email"
+              placeholder="example@mail.com"
+            />
+
+            <input
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              type="password"
+              name="password"
+              id="password"
+              placeholder="password"
+            />
+
             <button type="submit">LOG IND</button>
+
+            <Link className="nav-link-signin" href="/signup">
+            <p>Opret en konto her</p>
+          </Link>
           </form>
         </div>
       </div>

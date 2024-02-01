@@ -22,37 +22,35 @@ function Page() {
   };
   return (
     <div className="frontpage-grid">
-      <div className="wrapper">
-        <div className="form-wrapper">
-          <h1>Sign up</h1>
-          <form onSubmit={handleForm} className="form">
-            <label htmlFor="email">
-              <p>Email</p>
-              <input
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                type="email"
-                name="email"
-                id="email"
-                placeholder="example@mail.com"
-              />
-            </label>
-            <label htmlFor="password">
-              <p>Password</p>
-              <input
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                type="password"
-                name="password"
-                id="password"
-                placeholder="password"
-              />
-            </label>
-            <button type="submit">Sign up</button>
-          </form>
-        </div>
+    {/* <img className="login-img" src="../images/background.jpg"></img> */}
+    <div className="wrapper">
+      <div className="form-wrapper-signin">
+        <form onSubmit={handleForm} className="form">
+          <h1>Opret en konto</h1>
+
+          <input
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            type="email"
+            name="email"
+            id="email"
+            placeholder="example@mail.com"
+          />
+
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            type="password"
+            name="password"
+            id="password"
+            placeholder="password"
+          />
+
+          <button type="submit">Opret</button>
+        </form>
       </div>
     </div>
+  </div>
   );
 }
 
