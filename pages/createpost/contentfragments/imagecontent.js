@@ -38,7 +38,7 @@ export default function Imagecontent(props) {
   return (
     <>
       <div className="html-content-heading">
-        <h4>Img af :{props.number}</h4>
+        <h4>Nr. {props.number+1}</h4>
         <div>
           <Stack direction="row" spacing={1}>
             <DeleteIcon onClick={handleRemove}></DeleteIcon>

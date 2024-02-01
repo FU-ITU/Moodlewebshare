@@ -15,7 +15,7 @@ export default function Htmlcontent(props) {
   return (
     <>
       <div className="html-content-heading">
-        <h4>Htmlcontent af : {props.number}</h4>
+        <h4>Nr. {props.number+1}</h4>
         <Stack direction="row" spacing={1}>
           <DeleteIcon onClick={handleRemove}></DeleteIcon>
         </Stack>

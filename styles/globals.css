@@ -86,6 +86,28 @@ body {
 
 }
 
+.se-mere-button{
+  text-decoration: none;
+  color: #168b7c;
+  padding: 0;
+  font-size: 1em;
+  text-align: center;
+  p {
+    border: solid;
+    width: 10%;
+    border-width: 1px;
+    border-radius: 4px;
+    padding: 1%;
+
+  }
+}
+
+.se-mere-button :hover{
+
+  color: aliceblue;
+  background-color: #168b7c;
+}
+
 main {
   display: flex;
   overflow: hidden;
@@ -150,11 +172,6 @@ input[type='checkbox'] {
   width: 100%;
   min-height: 100vh;
   background-color: rgba(253, 251, 251, 0.685);
-
-  .wrapper {
-    /* width: 50%; */
-
-  }
 
   .wrapper-create {
     width: 70%;
@@ -253,7 +270,7 @@ input[type='checkbox'] {
     position: fixed;
     height: 4%;
     bottom: 0;
-    width: 60%;
+    width: 57%;
 
     border-radius: 4px;
     z-index: 999999;

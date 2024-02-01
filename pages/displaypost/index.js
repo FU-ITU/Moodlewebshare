@@ -44,7 +44,7 @@ function DisplayPost({ props }) {
             </div>
           ))}
           <h3>Creator: {props.data.creator}</h3>
-          <Link href={link}> Mere info</Link>
+          <Link className="se-mere-button" href={link}> <p>mere info</p> </Link>
         </div>
       </div>
     );
