@@ -39,7 +39,7 @@ function DisplaySinglePost({ props }) {
                     {contentItem.type === "Imagecontent" && (
                       <div>
                         <h4>Image content</h4>
-                        <img src={ "../images/"+contentItem.content} alt="Image" />
+                        <img src={ "../"+contentItem.content} alt="Image" />
                       </div>
                     )}
 
@@ -55,7 +55,7 @@ function DisplaySinglePost({ props }) {
             ))}
              <h3>Creator: {data.creator}</h3>
           </div>
-          <Link href={link}> update</Link>
+          <Link  className="button-update"href={link}> update</Link>
 
          
         </div>

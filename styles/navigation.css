@@ -17,12 +17,23 @@
 .sideNavigation {
     padding: 10% 2%;
     display: flex;
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     flex-direction: column;
     align-items: flex-start;
     transform: translateY(25%);
     width: 100%;
     overflow: hidden;
+}
+
+.button-update{
+    font-family: 'Courier New', Courier, monospace;
+    text-decoration: none;
+    height: 20px;
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: #032b43;
+    color: #032b43;
+
 }
 
 .sideNavigation a {
@@ -98,7 +109,7 @@
     padding: 10% 0% 5%;
     position: fixed;
     right: 0;
-    margin-right: 15%;
+    margin-right: 5%;
 }
 
 .nav-subpage a {

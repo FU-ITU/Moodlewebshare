@@ -359,7 +359,7 @@ input[type='checkbox'] {
     text-decoration: none;
     padding: 1%;
     max-width: 10%;
-    min-width: 200px;
+    min-width: 300px;
 
 
     p {
@@ -429,7 +429,7 @@ input[type='checkbox'] {
   justify-content: center;
 
   .page-content-link-grid {
-    width: 70%;
+    width: 60%;
   }
 
 }
@@ -474,8 +474,8 @@ input[type='checkbox'] {
   width: 100%;
 
   div {
-    max-width: 230px;
-    min-width: 240px;
+    max-width: 300px;
+    min-width: 350px;
     padding: 0.5%;
 
 

@@ -52,8 +52,6 @@ export default function Navside({ children }) {
           ) : (
             console.log(user)
           )}
-        </div>
-        <div className="profile-section">
           {(user != null ? <Signout></Signout> : null)}
         </div>
       </aside>

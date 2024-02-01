@@ -1,4 +1,6 @@
 import { getAuth, signOut } from "firebase/auth";
+import { Logout } from "@mui/icons-material";
+import Link from "next/link";
 
 function HandleClick() {
   const auth = getAuth();
@@ -17,7 +19,7 @@ function HandleClick() {
 export default function Signout({ children }) {
   return (
     <>
-      <button className="sign-out" onClick={() => HandleClick()}> Log ud</button>
+      <Link className="nav-link"  href="" onClick={() => HandleClick()}> <Logout></Logout> <p>Log ud</p></Link>
     </>
   );
 }

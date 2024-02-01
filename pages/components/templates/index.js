@@ -39,8 +39,8 @@ export default function Templates({ props }) {
             </div>
 
             <div className="frontpage-grid">
+            <h2 className="center-h1">Dine resultater:</h2>
               <div className="page-content">
-                <h2 className="center-h1">Dine resultater:</h2>
                 <div className="page-content-link-grid">
                   {Query.map(function (Query, key = 0) {
                     key++;
@@ -61,8 +61,9 @@ export default function Templates({ props }) {
           <div className="search-panel">
             <Search data={Data} query={changeQuery}></Search>
           </div>
-          <h1 className="center-h1">Templates</h1>
+       
           <div className="frontpage-grid">
+          <h1 className="center-h1">Templates</h1>
             <div className="page-content">
               <div className="page-content-link-grid">
                 {Data.result.map(function (Data, key = 0) {
