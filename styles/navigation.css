@@ -1,7 +1,7 @@
 .nav {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #032b43;
-    width: 10%;
+    width: 5%;
     min-height: 100vh;
     position: fixed;
     box-sizing: border-box;
@@ -39,8 +39,8 @@
 .sideNavigation a {
     text-decoration: none;
     color: aliceblue;
-    width: 69%;
-    padding: 2% 10% 5%;
+    width: 70%;
+    padding: 5% 10% 5%;
     margin-top: 1%;
     transition: .3s;
     position: relative;
@@ -140,7 +140,7 @@
     }
 
     .burger-icon {
-        font-size: 3em !important;
+        font-size: 2em !important;
         padding: 2%;
         color: #032b43;
     }

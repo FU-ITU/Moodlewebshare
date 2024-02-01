@@ -70,7 +70,7 @@ export default function ComponentsPage({ props }) {
                   alt="card-content"
                 />
                 <CardContent>
-                  <Typography variant="body1" color="text.secondary">
+                  <Typography variant="body1"  color="text.secondary">
                     Video
                   </Typography>
                 </CardContent>

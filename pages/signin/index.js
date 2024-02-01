@@ -3,7 +3,8 @@ import React from "react";
 import signIn from "@/firebase/auth/signin";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Login from "@mui/icons-material/Login";
+import PersonIcon from '@mui/icons-material/Person';
+import LockIcon from '@mui/icons-material/Lock';
 function Page() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -27,30 +28,33 @@ function Page() {
         <div className="form-wrapper-signin">
           <form onSubmit={handleForm} className="form">
             <h1>Log ind</h1>
-
-            <input
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              type="email"
-              name="email"
-              id="email"
-              placeholder="example@mail.com"
-            />
-
-            <input
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              type="password"
-              name="password"
-              id="password"
-              placeholder="password"
-            />
-
+            <div className="input-container">
+            <PersonIcon></PersonIcon>
+              <input
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                type="email"
+                name="email"
+                id="email"
+                placeholder="example@mail.com"
+              />
+            </div>
+            <div className="input-container">
+             <LockIcon></LockIcon>
+              <input
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                type="password"
+                name="password"
+                id="password"
+                placeholder="password"
+              />
+            </div>
             <button type="submit">LOG IND</button>
 
             <Link className="nav-link-signin" href="/signup">
-            <p>Opret en konto her</p>
-          </Link>
+              <p>Opret en konto her</p>
+            </Link>
           </form>
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { useEffect } from "react";
+import SearchIcon from '@mui/icons-material/Search';
 export default function Search(props) {
   let filter = [];
   let matcharr = [];
@@ -44,8 +45,7 @@ export default function Search(props) {
 
   return (
     <div className="wrapper">
-      <div className="form-wrapper">
-        <p>Søg</p>
+        <SearchIcon></SearchIcon>
         <input
           onKeyUp={(e) => handleSearch(e.target.value, filter)}
           required
@@ -57,6 +57,6 @@ export default function Search(props) {
           placeholder="Quiz,Templates"
         />
       </div>
-    </div>
+   
   );
 }
