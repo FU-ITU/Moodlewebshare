@@ -29,36 +29,42 @@ function DisplaySinglePost({ props }) {
     return (
       <div className="frontpage-grid">
         <div className="content-wrapper">
-            {/* {console.log(data.category)} */}
-            <h1>{data.name} </h1>
-            {data.content?.map((section, index) => (
-              <div key={index}>
-                <h3> Section {index + 1}</h3>
-                {section.contentsection.map((contentItem, contentIndex) => (
-                  <div key={contentIndex}>
-                    {contentItem.type === "Imagecontent" && (
-                      <div>
-                        <h4>Image content</h4>
-                        <img src={ "../images/"+contentItem.content} alt="Image" />
-                      </div>
-                    )}
+          {/* {console.log(data.category)} */}
+          <h1>{data.name} </h1>
+          {data.content?.map((section, index) => (
+            <div key={index}>
+              <h3> Section {index + 1}</h3>
+              {section.contentsection.map((contentItem, contentIndex) => (
+                <div key={contentIndex}>
+                  {contentItem.type === "Imagecontent" && (
+                    <div>
+                      <h4>Image content</h4>
+                      <img
+                        src={"../images/" + contentItem.content}
+                        alt="Image"
+                      />
+                    </div>
+                  )}
 
-                    {contentItem.type === "Htmlcontent" && (
-                      <div>
-                        <h4>Html content</h4>
-                        <p>{contentItem.content}</p>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            ))}
-             <h3>Creator: {data.creator}</h3>
-          </div>
-          <Link  className="button-update"href={link}> update</Link>
-
-         
+                  {contentItem.type === "Htmlcontent" && (
+                    <div>
+                      <h4>Html content</h4>
+                      <p>{contentItem.content}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          ))}
+          <h3>Creator: {data.creator}</h3>
         </div>
+        {console.log(user)}
+        {user != null && user.email == data.creator ? (
+          <Link className="button-update" href={link}>
+            Update
+          </Link>
+        ) : null}
+      </div>
     );
   } else {
     return router.push("/frontpage");
