@@ -13,10 +13,13 @@ function DisplaySinglePost({ props }) {
   const user = useAuthContext();
   const [data, setData] = useState([]);
 
+
+
   const handleGet = async (e) => {
     const { result } = await getDoument("single", search);
     setData(result);
   };
+
   let link = "/updatepost?id=" + search;
   useEffect(() => {
     // Update the document title using the browser API
