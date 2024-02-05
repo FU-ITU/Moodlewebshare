@@ -17,7 +17,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 function Page(props) {
   const [data, setData] = useState([]);
 
-  console.log("updatepost", data);
+  // console.log("updatepost", data);
   ////skal modtage url param
   const searchParams = useSearchParams();
   const search = searchParams.get("id");
@@ -28,7 +28,7 @@ function Page(props) {
     setData(result);
   };
 
-  let link = "/updatepost?id=" + search;
+  // let link = "/updatepost?id=" + search;
   useEffect(() => {
     // Update the document title using the browser API
     handleGet();
@@ -41,6 +41,7 @@ function Page(props) {
   const router = useRouter();
   const user = useAuthContext();
   let whoami;
+  let filterdata = [];
   if (user != null) {
     whoami = user["uid"];
   }
@@ -64,20 +65,25 @@ function Page(props) {
       content: filterdata,
     });
 
+
+    
+
+
     if (error) {
       return console.log(error);
     }
     // else successful
     return router.push("/frontpage");
   };
+  
 
   return (
     <div className="frontpage-grid">
-      <div className="wrapper">
+      <div className="wrapper" >
         <button onClick={handleDelete}>delete</button>
         <h1>Update</h1>
 
-        <form onSubmit={handleForm} className="form">
+        <form onSubmit={handleForm} className="form" id="form">
           <label htmlFor="contenthtml"></label>
           <p>Skriv navet på dit opslag</p>
           <input
@@ -149,10 +155,10 @@ function Page(props) {
             </div>
           </fieldset>
           {data.content?.map((section, index) => (
-            <div key={index}>
+            <div  className="section "key={index}>
               <h1> Section {index + 1}</h1>
               {section.contentsection.map((contentItem, contentIndex) => (
-                <div key={contentIndex}>
+                <div className="section-content" key={contentIndex}>
                   {contentItem.type === "Imagecontent" && (
                     <div>
                       <h4>Image content</h4>
@@ -166,13 +172,13 @@ function Page(props) {
                           <Typography> Section {index + 1}</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                          <Typography>
+                    
                             <h2> Gammel værdi</h2>
                             <img
                               src={"../images/" + contentItem.content}
                               alt="Image"
                             />
-                          </Typography>
+                        
                           <h1> Opdater værdi</h1>
                           <div className="input-section-update">
                             <label htmlFor="img">
@@ -206,10 +212,10 @@ function Page(props) {
                           <Typography> Section {index + 1}</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                          <Typography>
+                       
                             <h2>Gammel værdi</h2>
                             <p>{contentItem.content}</p>
-                          </Typography>
+                       
                           <h1>Opdater værdi</h1>
                           <div className="input-section-update">
                             <textarea
@@ -232,7 +238,7 @@ function Page(props) {
             </div>
           ))}
 
-          <button type="submit">Create</button>
+          <button type="submit">Opdater</button>
         </form>
       </div>
 

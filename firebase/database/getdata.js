@@ -41,7 +41,7 @@ export default async function getDoument(datacollection, id) {
       let docRef = doc(db, "posts", id);
       try {
         result = await getDoc(docRef);
-        console.log(result);
+        // console.log(result);
         if (result.exists()) {
           // console.log(result.data());
           result = result.data();

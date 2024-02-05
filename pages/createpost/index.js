@@ -17,7 +17,6 @@ function Page() {
   const [data, setData] = React.useState([]);
   const user = useAuthContext();
   const id = useId();
-  ////dynamic content
   const addSection = () => {
     const newSection = <Section key={generateUniqueKey()}></Section>;
     setSection([...sections, newSection]);
@@ -36,7 +35,7 @@ function Page() {
 
     fielsarray.forEach((checkbox) => {
       if (checkbox.checked === true) {
-        console.log("checked");
+        // console.log("checked");
         newtags.push(checkbox.value);
       }
     });
@@ -75,7 +74,7 @@ function Page() {
     event.preventDefault();
 
     const tags = await getTags(); // henter tags
-    console.log(tags);
+    // console.log(tags);
     // changecontentsate();
     // console.log(data);
 
@@ -94,7 +93,7 @@ function Page() {
       filterdata.push({ contentsection });
     });
 
-    console.log(filterdata);
+    // console.log(filterdata);
     const { result, error } = await addData("posts", user, {
       creator: user["email"],
       category: category,
@@ -106,121 +105,127 @@ function Page() {
     if (error) {
       return console.log(error);
     }
-    console.log(result);
+    // console.log(result);
     return router.push("/frontpage");
   };
   // --------------------------------------------------------------
   useEffect(() => {}, [handleForm]);
 
-  return (
-    <>
-      <div className="frontpage-grid">
-        <div className="wrapper-create">
-          <div className="form-wrapper" id="form-wrapper">
-            <h1>Lav et opslag</h1>
-            <form onSubmit={handleForm} className="form">
-              <label htmlFor="contenthtml"></label>
-              <p>Skriv navet på dit opslag</p>
-              <input
-                onChange={(e) => setName(e.target.value)}
-                required
-                type="input"
-                name="text"
-                rows="15"
-                cols="50"
-                id="name"
-                placeholder="Matkend2"
-              />
+  ////dynamic content
+  if (user != null) {
+   let whoami = user["email"];
+    return (
+      <>
+        <div className="frontpage-grid">
+          <div className="wrapper-create">
+            <div className="form-wrapper" id="form-wrapper">
+              <h1>Lav et opslag</h1>
+              <form onSubmit={handleForm} className="form">
+                <label htmlFor="contenthtml"></label>
+                <p>Skriv navet på dit opslag</p>
+                <input
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                  type="input"
+                  name="text"
+                  rows="15"
+                  cols="50"
+                  id="name"
+                  placeholder="Matkend2"
+                />
 
-              <h2> Vælg kategori</h2>
+                <h2> Vælg kategori</h2>
 
-              <p></p>
-              <label htmlFor="kategori1"> Quiz </label>
-              <input
-                onChange={(e) => setCategory(e.target.value)}
-                type="radio"
-                id="kategori1"
-                name="kategori"
-                value="kategori1"
-              />
+                <p></p>
+                <label htmlFor="kategori1"> Quiz </label>
+                <input
+                  onChange={(e) => setCategory(e.target.value)}
+                  type="radio"
+                  id="kategori1"
+                  name="kategori"
+                  value="kategori1"
+                />
 
-              <label htmlFor="kategori2"> Template</label>
-              <input
-                onChange={(e) => setCategory(e.target.value)}
-                type="radio"
-                id="kategori2"
-                name="kategori"
-                value="kategori2"
-              />
-              <label htmlFor="kategori3">Video </label>
-              <input
-                onChange={(e) => setCategory(e.target.value)}
-                type="radio"
-                id="kategori3"
-                name="kategori"
-                value="kategori3"
-              />
-              <fieldset id="fieldset">
-                <legend>Vælg tags</legend>
-                <div className="tags checkbox">
-                  <label htmlFor="tagtemplate"> Html </label>
-                  <input
-                    type="checkbox"
-                    id="tagkode"
-                    name="tagtemkode"
-                    value="kode"
-                    className="switch"
-                  ></input>
-                  <label htmlFor="tagquiz"> Iteraktiv </label>
-                  <input
-                    type="checkbox"
-                    id="taginteraktiv"
-                    name="interaktiv"
-                    value="interaktiv"
-                    className="switch"
-                  ></input>
-                  <label htmlFor="tagvideo"> Multiplechoice </label>
-                  <input
-                    type="checkbox"
-                    id="tagmultiplechoice"
-                    name="tagmultiplechoice"
-                    value="multiplechoice"
-                    className="switch"
-                  ></input>
-                </div>
-              </fieldset>
-              <div
-                className="button-create-sticky-footer"
-                id="button-create-sticky-footer"
-              >
-                <button type="submit">Opret</button>
-              </div>
-              <div className="create-section">
-                {sections.map((sectionItem, index) => (
-                  <div key={index}>
-                    {React.cloneElement(sectionItem, {
-                      number: index,
-                      updateData: updateData,
-                    })}
-                    <Button
-                      className="remove-section-button"
-                      onClick={() => removeSection(index)}
-                    >
-                      Remove Section
-                    </Button>
+                <label htmlFor="kategori2"> Template</label>
+                <input
+                  onChange={(e) => setCategory(e.target.value)}
+                  type="radio"
+                  id="kategori2"
+                  name="kategori"
+                  value="kategori2"
+                />
+                <label htmlFor="kategori3">Video </label>
+                <input
+                  onChange={(e) => setCategory(e.target.value)}
+                  type="radio"
+                  id="kategori3"
+                  name="kategori"
+                  value="kategori3"
+                />
+                <fieldset id="fieldset">
+                  <legend>Vælg tags</legend>
+                  <div className="tags checkbox">
+                    <label htmlFor="tagtemplate"> Html </label>
+                    <input
+                      type="checkbox"
+                      id="tagkode"
+                      name="tagtemkode"
+                      value="kode"
+                      className="switch"
+                    ></input>
+                    <label htmlFor="tagquiz"> Iteraktiv </label>
+                    <input
+                      type="checkbox"
+                      id="taginteraktiv"
+                      name="interaktiv"
+                      value="interaktiv"
+                      className="switch"
+                    ></input>
+                    <label htmlFor="tagvideo"> Multiplechoice </label>
+                    <input
+                      type="checkbox"
+                      id="tagmultiplechoice"
+                      name="tagmultiplechoice"
+                      value="multiplechoice"
+                      className="switch"
+                    ></input>
                   </div>
-                ))}
-              </div>
-            </form>
+                </fieldset>
+                <div
+                  className="button-create-sticky-footer"
+                  id="button-create-sticky-footer"
+                >
+                  <button type="submit">Opret</button>
+                </div>
+                <div className="create-section">
+                  {sections.map((sectionItem, index) => (
+                    <div key={index}>
+                      {React.cloneElement(sectionItem, {
+                        number: index,
+                        updateData: updateData,
+                      })}
+                      <Button
+                        className="remove-section-button"
+                        onClick={() => removeSection(index)}
+                      >
+                        Remove Section
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              </form>
 
-            <Button className="add-section-button" onClick={addSection}>
-              <AddCircleIcon></AddCircleIcon>
-            </Button>
+              <Button className="add-section-button" onClick={addSection}>
+                <AddCircleIcon></AddCircleIcon>
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  } else {
+    router.push("/signin");
+  }
 }
 
 export default Page;

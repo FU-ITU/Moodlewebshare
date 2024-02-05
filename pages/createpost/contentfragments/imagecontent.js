@@ -13,7 +13,20 @@ export default function Imagecontent(props) {
     props.onRemove();
   };
 
+  const ShowPreview =  (e) =>{
+  
+    var src = URL.createObjectURL(e.target.files[0]);
+    var preview = document.getElementsByClassName("image-preview")[props.number];
+    preview.src = src;
+    preview.style.display = "flex"
+
+
+  }
+
   const handleFileChange = async (e) => {
+     //image preview
+     ShowPreview(e);
+
     const file = e.target.files[0];
     if (file) {
       const formData = new FormData();
@@ -56,6 +69,7 @@ export default function Imagecontent(props) {
           id={props.number}
           placeholder="imagecontent"
         />
+        <img id="image-preview" className="image-preview"/>
       </div>
     </>
   );

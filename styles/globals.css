@@ -471,7 +471,9 @@ input[type='checkbox'] {
 
 
 
-
+#image-preview{
+  display: none;
+}
 
 
 

@@ -50,7 +50,7 @@ export default function Navside({ children }) {
               <p>Login</p>
             </Link>
           ) : (
-            console.log(user)
+            null
           )}
           {(user != null ? <Signout></Signout> : null)}
         </div>
