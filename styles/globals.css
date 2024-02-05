@@ -374,6 +374,11 @@ input[type='checkbox'] {
       font-size: 0.8em;
       margin: 0;
     }
+
+  
+  }
+  #image-preview-update{
+    display: block;
   }
 
   .html-content-heading {

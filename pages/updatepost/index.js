@@ -11,11 +11,69 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { Stack } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+
 
 ////////
 
 function Page(props) {
+
+
+  const [contenthtml, setContenthtml] = React.useState("");
+  const [img, setImg] = React.useState("");
+  const [category, setCategory] = React.useState("");
+  const [name, setName] = React.useState("");
+  const router = useRouter();
+  const user = useAuthContext();
+  let whoami;
+  let filterdata = [];
+  if (user != null) {
+    whoami = user["uid"];
+  }
+
   const [data, setData] = useState([]);
+
+  const handleRemove = () => {
+    props.onRemove();
+  };
+  const ShowPreview = (e, contentIndex) => {
+    let src = URL.createObjectURL(e.target.files[0]);
+    let element = "image-preview-update-"+contentIndex
+    console.log(element)
+    let  preview =
+      document.getElementById(element);
+      
+    preview.src = src;
+  };
+
+  const handleFileChange = async (e ,contentIndex) => {
+
+    console.log(contentIndex);
+    //image preview
+    ShowPreview(e, contentIndex);
+
+    const file = e.target.files[0];
+    if (file) {
+      const formData = new FormData();
+      formData.append("image", file);
+
+      console.log(file);
+
+      try {
+        props.onUpdate(file.name, props.data);
+        const response = await fetch("/api/upload", {
+          method: "POST",
+          body: formData,
+        });
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error("Error uploading image", error);
+      }
+    }
+  };
 
   // console.log("updatepost", data);
   ////skal modtage url param
@@ -34,17 +92,6 @@ function Page(props) {
     handleGet();
   }, [data.length]);
 
-  const [contenthtml, setContenthtml] = React.useState("");
-  const [img, setImg] = React.useState("");
-  const [category, setCategory] = React.useState("");
-  const [name, setName] = React.useState("");
-  const router = useRouter();
-  const user = useAuthContext();
-  let whoami;
-  let filterdata = [];
-  if (user != null) {
-    whoami = user["uid"];
-  }
   const handleDelete = async (event) => {
     const { result, error } = await deletePost("posts", search);
     if (error) {
@@ -65,21 +112,16 @@ function Page(props) {
       content: filterdata,
     });
 
-
-    
-
-
     if (error) {
       return console.log(error);
     }
     // else successful
     return router.push("/frontpage");
   };
-  
 
   return (
     <div className="frontpage-grid">
-      <div className="wrapper" >
+      <div className="wrapper">
         <button onClick={handleDelete}>delete</button>
         <h1>Update</h1>
 
@@ -155,7 +197,7 @@ function Page(props) {
             </div>
           </fieldset>
           {data.content?.map((section, index) => (
-            <div  className="section "key={index}>
+            <div className="section " key={index}>
               <h1> Section {index + 1}</h1>
               {section.contentsection.map((contentItem, contentIndex) => (
                 <div className="section-content" key={contentIndex}>
@@ -169,30 +211,42 @@ function Page(props) {
                           aria-controls="panel1-content"
                           // id="panel1-header"
                         >
-                          <Typography> Section {index + 1}</Typography>
+                          <Typography> Content item {contentIndex+1}</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                    
-                            <h2> Gammel værdi</h2>
-                            <img
-                              src={"../images/" + contentItem.content}
-                              alt="Image"
-                            />
-                        
+
                           <h1> Opdater værdi</h1>
                           <div className="input-section-update">
-                            <label htmlFor="img">
-                              <p>Img </p>
-                              <input
-                                onChange={(e) => setImg(e.target.value)}
-                                required
-                                type="file"
-                                name="text"
-                                id="img"
-                                placeholder="htmlcontent"
-                                value={img}
+                            <div className="html-content-heading">
+                              <h4>Nr. {contentIndex+1}</h4>
+                              <div>
+                                <Stack direction="row" spacing={1}>
+                                  <DeleteIcon
+                                    onClick={handleRemove}
+                                  ></DeleteIcon>
+                                </Stack>
+                              </div>
+                            </div>
+                            <div className="img-content-wrap">
+                              <div className="upload-wrapper">
+                                <CloudUploadIcon></CloudUploadIcon>
+                                <input
+                                  className="data-input"
+                                  onChange={(e) => handleFileChange(e, contentIndex)}
+                                  required
+                                  type="file"
+                                  name="image"
+                                  id={props.number}
+                                  placeholder="imagecontent"
+                                />
+                              </div>
+                              <img
+                                id={"image-preview-update-" + contentIndex }
+                              
+                                className="image-preview"
+                                src={"../images/" + contentItem.content}
                               />
-                            </label>
+                            </div>
                           </div>
                         </AccordionDetails>
                       </Accordion>
@@ -209,23 +263,39 @@ function Page(props) {
                           aria-controls="panel1-content"
                           // id="panel1-header"
                         >
-                          <Typography> Section {index + 1}</Typography>
+                          <Typography> Content item {index + 1}</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                       
-                            <h2>Gammel værdi</h2>
-                            <p>{contentItem.content}</p>
-                       
                           <h1>Opdater værdi</h1>
-                          <div className="input-section-update">
+                          <div className="html-content-heading">
+                            <h4>Nr. {contentIndex +1}</h4>
+                            <Stack direction="row" spacing={1}>
+                              <DeleteIcon onClick={handleRemove}></DeleteIcon>
+                            </Stack>
+                          </div>
+
+                          <div className="html-content-wrap">
+                            <p>
+                              Indsæt din HTML-kode direkte i inputfeltet, og
+                              sørg for, at den er korrekt struktureret med de
+                              nødvendige tags.
+                              <br />
+                              <br />
+                              Du kan bruge HTML til at oprette overskrifter,
+                              paragraffer, lister, links, billeder og meget
+                              mere.
+                            </p>
                             <textarea
-                              onChange={(e) => setContenthtml(e.target.value)}
+                              className="data-input"
+                              // onChange={(e) => props.changestate(props.number, e.target.value)}
+                              onChange={(e) => handleClick(e)}
                               required
-                              type="textarena"
+                              type="input"
                               name="text"
                               rows="15"
                               cols="50"
-                              id="contenthtml"
+                              value={contentItem.content}
+                              id={props.number}
                               placeholder="htmlcontent"
                             />
                           </div>
