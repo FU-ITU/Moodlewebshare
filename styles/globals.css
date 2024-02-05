@@ -327,21 +327,32 @@ input[type='checkbox'] {
   .img-content-wrap {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
+    padding: 0 0 5%;
 
 
     input {
 
       padding: 0 0 10%
     }
-
-    svg {
-      padding: 5% 0 0;
-      font-size: 5em;
+    .upload-wrapper{
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      width: 30%;
     }
 
+    svg {
+      padding: 0 0 0;
+      font-size: 5em;
+    }
+   
+    img{
+      width:60%!important;
+      max-width: 400px;
+    }
 
 
 

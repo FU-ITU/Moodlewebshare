@@ -59,6 +59,8 @@ export default function Imagecontent(props) {
         </div>
       </div>
       <div className="img-content-wrap">
+
+        <div className="upload-wrapper">
         <CloudUploadIcon></CloudUploadIcon>
         <input
           className="data-input"
@@ -69,6 +71,7 @@ export default function Imagecontent(props) {
           id={props.number}
           placeholder="imagecontent"
         />
+        </div>
         <img id="image-preview" className="image-preview"/>
       </div>
     </>
