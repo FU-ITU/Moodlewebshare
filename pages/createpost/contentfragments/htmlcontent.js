@@ -41,9 +41,8 @@ export default function Htmlcontent(props) {
           name="text"
           rows="15"
           cols="50"
-          value={props.contentdata}
           id={props.number}
-          placeholder="htmlcontent"
+          placeholder={props.contentdata}
         />
       </div>
     </>

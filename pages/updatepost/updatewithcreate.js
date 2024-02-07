@@ -9,18 +9,18 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useAuthContext } from "@/firebase/auth/authcontext";
 import { deletePost } from "@/firebase/database/deletedata";
 import getDoument from "@/firebase/database/getdata";
-import { Stack } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+
 
 function Page() {
-  const [category, setCategory] = React.useState("");
-  const [name, setName] = React.useState("");
+
+ 
   const [sections, setSection] = React.useState([]);
   const router = useRouter();
   const [data, setData] = React.useState([]);
+  const [name, setName] = React.useState(data.name);
   const user = useAuthContext();
   const id = useId();
+  const [category, setCategory] = React.useState(data.category);
 
   const addSection = (content) => {
     const newSection = (
@@ -52,7 +52,7 @@ function Page() {
     
   };
 
-  //   console.log(data);
+  console.log(data);
 
   const searchParams = useSearchParams();
   const search = searchParams.get("id");
@@ -82,26 +82,17 @@ function Page() {
   }, []);
 
 
+  const handleDelete = async (event) => {
+    
+    const { result, error } = await deletePost("posts", search);
+    if (error) {
+      return console.log(error);
+    }
+    // else successful
+    return router.push("/frontpage");
+  };
 
-  //   const updateData = (dynamicComponents, index) => {
-  //     // console.log("index uploading");
-  //     setData((prevData) => {
-  //       const newData = [...prevData];
-  //       const existingObject = newData[index];
 
-  //       if (existingObject) {
-  //         // If the object at the specified index exists, update its content
-  //         existingObject.sectioncontent = dynamicComponents;
-  //       } else {
-  //         // If the object at the specified index doesn't exist, create a new one
-  //         newData[index] = { sectioncontent: dynamicComponents };
-  //       }
-
-  //       return newData;
-  //     });
-
-  //     // console.log(data);
-  //   };
 
   // console.log(data);
   //se om section har chilren ellers så remove:
@@ -113,31 +104,34 @@ function Page() {
     });
   };
 
+
+  
+
   const handleForm = async (event) => {
     event.preventDefault();
 
     const tags = await getTags(); // henter tags
-    // console.log(tags);
-    // changecontentsate();
-    // console.log(data);
+   
 
     //rekursiv
     let filterdata = [];
-    data.map((section) => {
-      let sectoins = section.sectioncontent;
+    sections.map((section) => {
+        console.log(section)
+      let sectoins = section.props.content.contentsection;
       let contentsection = [];
       sectoins.forEach((datafield) => {
-        // console.log(datafield);
+        
+        console.log(datafield);
         contentsection.push({
-          content: datafield.value,
-          type: datafield.type.name,
+          content: datafield.content,
+          type: datafield.type,
         });
       });
       filterdata.push({ contentsection });
     });
 
-    // console.log(filterdata);
-    const { result, error } = await addData("posts", user, {
+    console.log(filterdata);
+    const { result, error } = await updateData("posts", search, {
       creator: user["email"],
       category: category,
       tags: tags,
@@ -163,7 +157,9 @@ function Page() {
     return (
       <>
         <div className="frontpage-grid">
+            
           <div className="wrapper-create">
+          <button onClick={handleDelete}>Delete</button>
             <div className="form-wrapper" id="form-wrapper">
               <h1>Opdater</h1>
               <form onSubmit={handleForm} className="form">
@@ -177,7 +173,7 @@ function Page() {
                   rows="15"
                   cols="50"
                   id="name"
-                  placeholder="Matkend2"
+                  placeholder={data.name}
                 />
 
                 <h2> Vælg kategori</h2>
@@ -238,10 +234,10 @@ function Page() {
                   </div>
                 </fieldset>
                 <div
-                  className="button-create-sticky-footer"
+                  className="button-create-sticky-footer-update"
                   id="button-create-sticky-footer"
                 >
-                  <button type="submit">Opret</button>
+                  <button type="submit">Opdater</button>
                 </div>
                 <div className="create-section">
                   {sections.map((sectionItem, index) => (
