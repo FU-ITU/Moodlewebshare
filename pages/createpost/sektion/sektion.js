@@ -26,9 +26,9 @@ export default function Section(props) {
 
   const updateDynamicComponent = (index, updatedData) => {
     ///datahentes!
-    console.log("updating");
+    // console.log("updating");
 
-    console.log(props.number);
+    // console.log(props.number);
 
     setDynamicComponents((prevState) => {
       const updatedComponents = prevState.map((component, i) =>

@@ -1,6 +1,7 @@
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { Content } from "next/font/google";
 
 export default function Htmlcontent(props) {
 
@@ -40,7 +41,7 @@ export default function Htmlcontent(props) {
           name="text"
           rows="15"
           cols="50"
-          value={props.value}
+          value={props.contentdata}
           id={props.number}
           placeholder="htmlcontent"
         />

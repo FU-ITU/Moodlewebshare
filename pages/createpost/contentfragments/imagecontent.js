@@ -4,11 +4,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 export default function Imagecontent(props) {
-  // const handleClick = (e) => {
-  //   ///funktion til at gennme billedet på server + lave url til billedepath og sætte det til updatedData:
-  //   const updatedData = e.target.value;
-  //   props.onUpdate(updatedData, props.data);
-  // };
+ 
+  console.log(props)
   const handleRemove = () => {
     props.onRemove();
   };
@@ -51,7 +48,7 @@ export default function Imagecontent(props) {
   return (
     <>
       <div className="html-content-heading">
-        <h4>Nr. {props.number+1}</h4>
+        <h4>Nr. {props.number + 1}</h4>
         <div>
           <Stack direction="row" spacing={1}>
             <DeleteIcon onClick={handleRemove}></DeleteIcon>
@@ -59,20 +56,23 @@ export default function Imagecontent(props) {
         </div>
       </div>
       <div className="img-content-wrap">
-
         <div className="upload-wrapper">
-        <CloudUploadIcon></CloudUploadIcon>
-        <input
-          className="data-input"
-          onChange={(e) => handleFileChange(e)}
-          required
-          type="file"
-          name="image"
-          id={props.number}
-          placeholder="imagecontent"
-        />
+          <CloudUploadIcon></CloudUploadIcon>
+          <input
+            className="data-input"
+            onChange={(e) => handleFileChange(e)}
+            required
+            type="file"
+            name="image"
+            id={props.number}
+            placeholder="imagecontent"
+          />
         </div>
-        <img id="image-preview" className="image-preview"/>
+        <img
+          id="image-preview-update"
+          className="image-preview"
+          src={"../images/" + props.contentdata}
+        />
       </div>
     </>
   );
