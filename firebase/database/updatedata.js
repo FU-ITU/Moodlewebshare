@@ -6,7 +6,7 @@ export default async function updateData(colllection, id, data) {
   let result = null;
   let error = null;
 
-  console.log(id);
+  // console.log(id);
 
   //if statement til delete fra samme component 
   try {

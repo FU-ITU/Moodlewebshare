@@ -19,8 +19,9 @@ function DisplaySinglePost({ props }) {
     const { result } = await getDoument("single", search);
     setData(result);
   };
+  
 
-  let link = "/updatepost?id=" + search;
+  let link = "/updatepost/updatewithcreate?id=" + search;
   useEffect(() => {
     // Update the document title using the browser API
     handleGet();

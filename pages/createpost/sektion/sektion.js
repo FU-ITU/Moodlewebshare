@@ -10,8 +10,10 @@ import CodeIcon from "@mui/icons-material/Code";
 import ImageIcon from "@mui/icons-material/Image";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import Stack from "@mui/material/Stack";
-import React, { Component, use, useEffect } from "react";
+import React, { useEffect } from "react";
+
 import updateData from "@/firebase/database/updatedata";
+import { data } from "autoprefixer";
 
 export default function Section(props) {
   const handleOpen = () => setOpen(true);
@@ -24,11 +26,10 @@ export default function Section(props) {
 
   const updateDynamicComponent = (index, updatedData) => {
     ///datahentes!
-    console.log("updating")
-   
+    console.log("updating");
+
     console.log(props.number);
 
-   
     setDynamicComponents((prevState) => {
       const updatedComponents = prevState.map((component, i) =>
         i === index ? { ...component, value: updatedData } : component
@@ -61,7 +62,6 @@ export default function Section(props) {
       ) : (
         <Imagecontent></Imagecontent>
       );
-
     if (contentType === "html") {
       setDynamicComponents((prevHtmlContent) => [
         ...prevHtmlContent,
@@ -74,11 +74,35 @@ export default function Section(props) {
     handleClose();
   };
 
+  ////from update function
+  const Addfromupdate = (sections) => {
+    console.log(sections);
+    // Create a copy of dynamicComponents
+    // Accumulate new components
+    console.log("hej");
+    // Define an array to collect new contents
+    const newDynamicComponents = [];
+    sections.forEach((element) => {
+      // console.log(element);
+      const newContent =
+        element.type === "Htmlcontent" ? (
+          <Htmlcontent contentdata={element.content}></Htmlcontent>
+        ) : (
+          <Imagecontent contentdata={element.content}></Imagecontent>
+        );
+
+      newDynamicComponents.push(newContent);
+    });
+
+    // After iterating through all elements, update the dynamic components state once
+    setDynamicComponents([...newDynamicComponents]);
+  };
+
   useEffect(() => {
-    console.log("useeffect");
-    //update data til parrent
-    props.updateData(dynamicComponents,props.number);
-  }, [dynamicComponents]);
+    if (props.content?.props?.content?.contentsection) {
+      Addfromupdate(props.content.props.content.contentsection);
+    }
+  }, []);
 
   ///modale style = sx
   const style = {

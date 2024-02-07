@@ -15,12 +15,9 @@ import { Stack } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
-
 ////////
 
 function Page(props) {
-
-
   const [contenthtml, setContenthtml] = React.useState("");
   const [img, setImg] = React.useState("");
   const [category, setCategory] = React.useState("");
@@ -35,24 +32,19 @@ function Page(props) {
 
   const [data, setData] = useState([]);
 
-  const handleRemove = () => {
-    props.onRemove();
-  };
-  const ShowPreview = (e, contentIndex) => {
+  const ShowPreview = (e, contentIndex, sectionindex) => {
     let src = URL.createObjectURL(e.target.files[0]);
-    let element = "image-preview-update-"+contentIndex
-    console.log(element)
-    let  preview =
-      document.getElementById(element);
-      
+    let element = "image-preview-update-" + sectionindex + "-" + contentIndex;
+    console.log(element);
+    let preview = document.getElementById(element);
+
     preview.src = src;
   };
 
-  const handleFileChange = async (e ,contentIndex) => {
-
+  const handleFileChange = async (e, contentIndex, sectionindex) => {
     console.log(contentIndex);
     //image preview
-    ShowPreview(e, contentIndex);
+    ShowPreview(e, contentIndex, sectionindex);
 
     const file = e.target.files[0];
     if (file) {
@@ -91,6 +83,7 @@ function Page(props) {
     // Update the document title using the browser API
     handleGet();
   }, [data.length]);
+  
 
   const handleDelete = async (event) => {
     const { result, error } = await deletePost("posts", search);
@@ -118,6 +111,46 @@ function Page(props) {
     // else successful
     return router.push("/frontpage");
   };
+
+  ////data
+
+
+  const removeComponent = (sectionindex, contentindex) => {
+
+    console.log(sectionindex, contentindex),
+    sectionindex = Number(sectionindex);
+    contentindex = Number(contentindex);
+
+    
+
+  console.log(data.content)
+
+    
+    let nestedcontent = data.content[sectionindex].contentsection
+
+    nestedcontent.splice(contentindex, 1);
+ 
+    console.log(nestedcontent);
+
+    
+    console.log(data.content)
+  
+
+    // console.log(originalArray);
+
+    // data.content[sectionindex].splice(contentindex, 1);
+
+
+    setData ( {
+        creator: "test@test.com",
+        name: "Testertemplate view",
+        category: "kategori2",
+        content:data.content,
+        tags:""
+    })
+  };
+
+  console.log(data);
 
   return (
     <div className="frontpage-grid">
@@ -211,18 +244,21 @@ function Page(props) {
                           aria-controls="panel1-content"
                           // id="panel1-header"
                         >
-                          <Typography> Content item {contentIndex+1}</Typography>
+                          <Typography>
+                            Content item {contentIndex + 1}
+                          </Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-
                           <h1> Opdater værdi</h1>
                           <div className="input-section-update">
                             <div className="html-content-heading">
-                              <h4>Nr. {contentIndex+1}</h4>
+                              <h4>Nr. {contentIndex + 1}</h4>
                               <div>
                                 <Stack direction="row" spacing={1}>
                                   <DeleteIcon
-                                    onClick={handleRemove}
+                                    onClick={() =>
+                                      removeComponent(index, contentIndex)
+                                    }
                                   ></DeleteIcon>
                                 </Stack>
                               </div>
@@ -232,7 +268,9 @@ function Page(props) {
                                 <CloudUploadIcon></CloudUploadIcon>
                                 <input
                                   className="data-input"
-                                  onChange={(e) => handleFileChange(e, contentIndex)}
+                                  onChange={(e) =>
+                                    handleFileChange(e, contentIndex, index)
+                                  }
                                   required
                                   type="file"
                                   name="image"
@@ -241,8 +279,12 @@ function Page(props) {
                                 />
                               </div>
                               <img
-                                id={"image-preview-update-" + contentIndex }
-                              
+                                id={
+                                  "image-preview-update-" +
+                                  index +
+                                  "-" +
+                                  contentIndex
+                                }
                                 className="image-preview"
                                 src={"../images/" + contentItem.content}
                               />
@@ -263,14 +305,21 @@ function Page(props) {
                           aria-controls="panel1-content"
                           // id="panel1-header"
                         >
-                          <Typography> Content item {index + 1}</Typography>
+                          <Typography>
+                            {" "}
+                            Content item {contentIndex + 1}
+                          </Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                           <h1>Opdater værdi</h1>
                           <div className="html-content-heading">
-                            <h4>Nr. {contentIndex +1}</h4>
+                            <h4>Nr. {contentIndex + 1}</h4>
                             <Stack direction="row" spacing={1}>
-                              <DeleteIcon onClick={handleRemove}></DeleteIcon>
+                              <DeleteIcon
+                                onClick={() =>
+                                  removeComponent(index, contentIndex)
+                                }
+                              ></DeleteIcon>
                             </Stack>
                           </div>
 

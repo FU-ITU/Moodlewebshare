@@ -3,6 +3,7 @@ import Stack from "@mui/material/Stack";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function Htmlcontent(props) {
+
   const handleClick = (e) => {
     const updatedData = e.target.value;
     props.onUpdate(updatedData, props.data);
