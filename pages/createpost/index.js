@@ -76,11 +76,12 @@ function Page() {
     const tags = await getTags(); // henter tags
     // console.log(tags);
     // changecontentsate();
-    // console.log(data);
+     console.log(data);
 
     //rekursiv
     let filterdata = [];
     data.map((section) => {
+      console.log(section);
       let sectoins = section.sectioncontent;
       let contentsection = [];
       sectoins.forEach((datafield) => {
@@ -93,7 +94,7 @@ function Page() {
       filterdata.push({ contentsection });
     });
 
-    // console.log(filterdata);
+    console.log(filterdata);
     const { result, error } = await addData("posts", user, {
       creator: user["email"],
       category: category,

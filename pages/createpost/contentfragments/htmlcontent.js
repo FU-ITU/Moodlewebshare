@@ -43,7 +43,8 @@ export default function Htmlcontent(props) {
           cols="50"
           id={props.number}
           placeholder={props.contentdata}
-        />
+          defaultValue={props.contentdata}
+        ></textarea>
       </div>
     </>
   );

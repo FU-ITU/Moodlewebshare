@@ -147,10 +147,6 @@ function Page() {
   };
   // --------------------------------------------------------------
 
-  ////dynamic content
-
-  // IF FROM UDDATE WITH SEARCHPARAM RENDER SECTIONS WITH VALUES FROM GET
-
   /////////////
   if (user != null) {
     let whoami = user["email"];

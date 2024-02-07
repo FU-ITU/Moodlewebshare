@@ -10,10 +10,7 @@ import CodeIcon from "@mui/icons-material/Code";
 import ImageIcon from "@mui/icons-material/Image";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import Stack from "@mui/material/Stack";
-import React, { useEffect } from "react";
-
-import updateData from "@/firebase/database/updatedata";
-import { data } from "autoprefixer";
+import React, { useEffect } from "react";;
 
 export default function Section(props) {
   const handleOpen = () => setOpen(true);
@@ -26,10 +23,8 @@ export default function Section(props) {
 
   const updateDynamicComponent = (index, updatedData) => {
     ///datahentes!
-    // console.log("updating");
-
-    // console.log(props.number);
-
+    props.updateData(dynamicComponents,props.number);
+ 
     setDynamicComponents((prevState) => {
       const updatedComponents = prevState.map((component, i) =>
         i === index ? { ...component, value: updatedData } : component
@@ -99,6 +94,9 @@ export default function Section(props) {
   };
 
   useEffect(() => {
+
+   
+    
     if (props.content?.props?.content?.contentsection) {
       Addfromupdate(props.content.props.content.contentsection);
     }

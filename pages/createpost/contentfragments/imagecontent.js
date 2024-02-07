@@ -66,6 +66,7 @@ export default function Imagecontent(props) {
             name="image"
             id={props.number}
             placeholder="imagecontent"
+            
           />
         </div>
         <img
