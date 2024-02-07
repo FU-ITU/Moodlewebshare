@@ -5,7 +5,6 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 export default function Imagecontent(props) {
  
-  console.log(props)
   const handleRemove = () => {
     props.onRemove();
   };
@@ -14,6 +13,7 @@ export default function Imagecontent(props) {
   
     var src = URL.createObjectURL(e.target.files[0]);
     var preview = document.getElementsByClassName("image-preview")[props.number];
+    console.log(preview)
     preview.src = src;
     preview.style.display = "flex"
 
