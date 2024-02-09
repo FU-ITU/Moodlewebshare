@@ -23,7 +23,7 @@ export default function Section(props) {
 
   const updateDynamicComponent = (index, updatedData) => {
     ///datahentes!
-    props.updateData(dynamicComponents,props.number);
+
  
     setDynamicComponents((prevState) => {
       const updatedComponents = prevState.map((component, i) =>
@@ -95,12 +95,12 @@ export default function Section(props) {
 
   useEffect(() => {
 
-   
+    props.updateData(dynamicComponents,props.number);
     
     if (props.content?.props?.content?.contentsection) {
       Addfromupdate(props.content.props.content.contentsection);
     }
-  }, []);
+  }, [dynamicComponents]);
 
   ///modale style = sx
   const style = {

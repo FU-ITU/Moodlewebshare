@@ -9,6 +9,7 @@ export default async function addData(colllection, id, data) {
   let unik = (Math.random() + 1).toString(36).substring(7);
 
   console.log(id);
+  console.log(data)
   try {
     //add 
     result = await setDoc(doc(db, colllection, id["uid"]+unik), data, {

@@ -10,13 +10,10 @@ export default function Imagecontent(props) {
   };
 
   const ShowPreview =  (e) =>{
-  
     var src = URL.createObjectURL(e.target.files[0]);
-    var preview = document.getElementsByClassName("image-preview")[props.number];
-    console.log(preview)
+    var preview = document.getElementById("image-preview-update-" + props.number)
     preview.src = src;
     preview.style.display = "flex"
-
 
   }
 
@@ -24,15 +21,19 @@ export default function Imagecontent(props) {
      //image preview
      ShowPreview(e);
 
+     console.log("handle")
+    
+
     const file = e.target.files[0];
     if (file) {
       const formData = new FormData();
       formData.append("image", file);
 
       console.log(file);
+      props.onUpdate(file.name, props.data);
 
       try {
-        props.onUpdate(file.name, props.data);
+   
         const response = await fetch("/api/upload", {
           method: "POST",
           body: formData,
@@ -70,7 +71,7 @@ export default function Imagecontent(props) {
           />
         </div>
         <img
-          id="image-preview-update"
+          id={"image-preview-update-" + props.number}
           className="image-preview"
           src={"../images/" + props.contentdata}
         />

@@ -85,7 +85,7 @@ function Page() {
       let sectoins = section.sectioncontent;
       let contentsection = [];
       sectoins.forEach((datafield) => {
-        // console.log(datafield);
+        console.log(datafield);
         contentsection.push({
           content: datafield.value,
           type: datafield.type.name,
@@ -106,7 +106,7 @@ function Page() {
     if (error) {
       return console.log(error);
     }
-    // console.log(result);
+    console.log(result);
     return router.push("/frontpage");
   };
   // --------------------------------------------------------------
