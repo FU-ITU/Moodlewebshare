@@ -43,7 +43,8 @@ function Page() {
   };
 
   const updateData = (dynamicComponents, index) => {
-     console.table(dynamicComponents);
+
+    console.log("updatedfromcreate",dynamicComponents)
     setData((prevData) => {
       const newData = [...prevData];
       const existingObject = newData[index];
@@ -60,8 +61,7 @@ function Page() {
     });
     // console.log(data);
   };
-  // console.log(data);
-  //se om section har chilren ellers så remove:
+
   const removeSection = (sectionIndex) => {
     sectionIndex = Number(sectionIndex);
     setSection((prev) => {
@@ -70,13 +70,14 @@ function Page() {
     });
   };
 
+
   const handleForm = async (event) => {
     event.preventDefault();
 
     const tags = await getTags(); // henter tags
     // console.log(tags);
   
-     console.log(data);
+     console.log("initial-data", data);
 
     //rekursiv
     let filterdata = [];
@@ -84,6 +85,8 @@ function Page() {
       console.log(section);
       let sectoins = section.sectioncontent;
       let contentsection = [];
+      console.log(typeof sections)
+
       sectoins.forEach((datafield) => {
         contentsection.push({
           content: datafield.value,
@@ -93,7 +96,7 @@ function Page() {
       filterdata.push({ contentsection });
     });
 
-    console.log(filterdata);
+    console.log("finalarray",filterdata);
     const { result, error } = await addData("posts", user, {
       creator: user["email"],
       category: category,

@@ -28,9 +28,13 @@ export default function Section(props) {
       const updatedComponents = prevState.map((component, i) =>
         i === index ? { ...component, value: updatedData } : component
       );
-
+      console.log(prevState, "hej")
+       //updates skal ske her ! - dynamisk
+      props.updateData(updatedComponents, props.number);
       return updatedComponents;
     });
+  
+   
 
     if (dynamicComponents) {
       document.getElementById("button-create-sticky-footer").style.display =
@@ -40,11 +44,15 @@ export default function Section(props) {
 
   const removeComponent = (indexToRemove) => {
     indexToRemove = Number(indexToRemove);
+
+
     setDynamicComponents((prev) => {
       const newComponents = [
         ...prev.slice(0, indexToRemove),
         ...prev.slice(indexToRemove + 1),
       ];
+      console.log("newComponents" , newComponents);
+      props.updateData(dynamicComponents, props.number);
       return newComponents;
     });
   };
@@ -68,12 +76,10 @@ export default function Section(props) {
     handleClose();
   };
 
+
+
   ////from update function
   const Addfromupdate = (sections) => {
-    console.log(sections);
-    // Create a copy of dynamicComponents
-    // Accumulate new components
-    console.log("hej");
     // Define an array to collect new contents
     const newDynamicComponents = [];
     sections.forEach((element) => {
@@ -92,13 +98,17 @@ export default function Section(props) {
     setDynamicComponents([...newDynamicComponents]);
   };
 
-  useEffect(() => {
 
-    props.updateData(dynamicComponents,props.number);
+
+  useEffect(() => {
     if (props.content?.props?.content?.contentsection) {
       Addfromupdate(props.content.props.content.contentsection);
     }
-  }, [dynamicComponents]);
+
+  }, []);
+  
+
+  
 
   ///modale style = sx
   const style = {

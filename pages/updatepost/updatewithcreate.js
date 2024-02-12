@@ -2,9 +2,9 @@
 import addData from "@/firebase/database/adddata";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import Section from "../createpost/sektion/sektion";
-import { Button } from "@mui/material";
+import { Button, ButtonBase } from "@mui/material";
 import React, { useEffect, useState, useId, useRef } from "react";
-import updateData from "@/firebase/database/updatedata";
+import updatedataDatabase from "@/firebase/database/updatedata";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuthContext } from "@/firebase/auth/authcontext";
 import { deletePost } from "@/firebase/database/deletedata";
@@ -34,21 +34,50 @@ function Page() {
 
   ///update function for update:
 
+
+  
+  const updateDataupdate = (dynamicComponents, index) => {
+    setData((prevData) => {
+      const newData = [...prevData];
+      const existingObject = newData[index];
+
+      if (existingObject) {
+        // If the object at the specified index exists, update its content
+        existingObject.sectioncontent = dynamicComponents;
+      } else {
+        // If the object at the specified index doesn't exist, create a new one
+        newData[index] = { sectioncontent: dynamicComponents };
+      }
+
+      return newData;
+    });
+
+    console.log("fraupdate",data)
+  };
+
   const generateUniqueKey = () => {
     return Date.now();
   };
 
   const handleGet = async (e) => {
     const { result } = await getDoument("single", search);
-
-    const newSections = [];
+     
+    let sections = [];
 
     // console.log(result.content);
     for (const sectionItem of result.content) {
-      newSections.push();
-      addSection(...[sectionItem])
-    }
-    setData(result);
+      const newSection = (
+        <Section key={generateUniqueKey()} content={sectionItem}></Section>
+      );
+      
+      sections.push(newSection);
+      
+  
+      ///if section is from new section
+    };
+    
+    console.log("sectionsfromupdate",sections)
+    setSection(sections);
   
     
   };
@@ -79,7 +108,6 @@ function Page() {
   useEffect(() => {
     // Update the document title using the browser API
     console.log("useffect", "updatepage")
-    // handleGet();
   }, []);
 
 
@@ -109,44 +137,45 @@ function Page() {
   
 
   const handleForm = async (event) => {
+
+    console.log("fra update",data);
     event.preventDefault();
 
     const tags = await getTags(); // henter tags
-   
-    //rekursiv
+  
     let filterdata = [];
-    sections.map((section) => {
-        console.log(section)
-      let sectoins = section.props.content.contentsection;
+    data.map((section) => {
+      console.log(section);
+      let sectoins = section.sectioncontent;
       let contentsection = [];
+      console.log(typeof sections)
+
       sectoins.forEach((datafield) => {
-        
-        // console.log(datafield);
         contentsection.push({
-          content: datafield.content,
-          type: datafield.type,
+          content: datafield.value,
+          type: datafield.type.name,
         });
       });
       filterdata.push({ contentsection });
     });
 
-    console.log(filterdata);
+    console.log("finalfromupdate",filterdata);
   
 
-    // const { result, error } = await updateData("posts", search, {
-    //   creator: user["email"],
-    //   category: category,
-    //   tags: tags,
-    //   name: name,
-    //   content: filterdata,
-    // });
+    const { result, error } = await updatedataDatabase("posts", search, {
+      creator: user["email"],
+      category: category,
+      tags: tags,
+      name: name,
+      content: filterdata,
+    });
 
 
-    // if (error) {
-    //   return console.log(error);
-    // }
-    // // console.log(result);
-    // return router.push("/frontpage");
+    if (error) {
+      return console.log(error);
+    }
+    // console.log(result);
+    return router.push("/frontpage");
   };
   // --------------------------------------------------------------
 
@@ -155,9 +184,11 @@ function Page() {
     let whoami = user["email"];
     return (
       <>
+     
         <div className="frontpage-grid">    
           <div className="wrapper-create">
           <button onClick={handleDelete}>Delete</button>
+          <button onClick={(e) =>handleGet()}> Hent data</button>
             <div className="form-wrapper" id="form-wrapper">
               <h1>Opdater</h1>
               <form onSubmit={handleForm} className="form">
@@ -242,8 +273,8 @@ function Page() {
                     <div key={index}>
                       {React.cloneElement(sectionItem, {
                         number: index,
-                        updateData: updateData,
-                        content: sectionItem,
+                        updateData: updateDataupdate,
+                        content: sectionItem
                       })}
 
                       <Button

@@ -8,6 +8,7 @@ export default function Htmlcontent(props) {
   const handleClick = (e) => {
     const updatedData = e.target.value;
     props.onUpdate(updatedData, props.data);
+    console.log("updating")
   };
 
   const handleRemove = () => {
