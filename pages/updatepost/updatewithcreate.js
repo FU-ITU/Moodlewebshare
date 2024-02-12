@@ -26,6 +26,7 @@ function Page() {
     const newSection = (
       <Section key={generateUniqueKey()} content={content}></Section>
     );
+    
     setSection((prevSections) => [...prevSections, newSection]);
 
     ///if section is from new section
@@ -78,7 +79,7 @@ function Page() {
   useEffect(() => {
     // Update the document title using the browser API
     console.log("useffect", "updatepage")
-    handleGet();
+    // handleGet();
   }, []);
 
 
@@ -112,7 +113,6 @@ function Page() {
 
     const tags = await getTags(); // henter tags
    
-
     //rekursiv
     let filterdata = [];
     sections.map((section) => {
@@ -121,7 +121,7 @@ function Page() {
       let contentsection = [];
       sectoins.forEach((datafield) => {
         
-        console.log(datafield);
+        // console.log(datafield);
         contentsection.push({
           content: datafield.content,
           type: datafield.type,
@@ -131,19 +131,22 @@ function Page() {
     });
 
     console.log(filterdata);
-    const { result, error } = await updateData("posts", search, {
-      creator: user["email"],
-      category: category,
-      tags: tags,
-      name: name,
-      content: filterdata,
-    });
+  
 
-    if (error) {
-      return console.log(error);
-    }
-    // console.log(result);
-    return router.push("/frontpage");
+    // const { result, error } = await updateData("posts", search, {
+    //   creator: user["email"],
+    //   category: category,
+    //   tags: tags,
+    //   name: name,
+    //   content: filterdata,
+    // });
+
+
+    // if (error) {
+    //   return console.log(error);
+    // }
+    // // console.log(result);
+    // return router.push("/frontpage");
   };
   // --------------------------------------------------------------
 
@@ -152,8 +155,7 @@ function Page() {
     let whoami = user["email"];
     return (
       <>
-        <div className="frontpage-grid">
-            
+        <div className="frontpage-grid">    
           <div className="wrapper-create">
           <button onClick={handleDelete}>Delete</button>
             <div className="form-wrapper" id="form-wrapper">

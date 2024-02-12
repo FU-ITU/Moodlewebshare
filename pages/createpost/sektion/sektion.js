@@ -23,7 +23,6 @@ export default function Section(props) {
 
   const updateDynamicComponent = (index, updatedData) => {
     ///datahentes!
-
  
     setDynamicComponents((prevState) => {
       const updatedComponents = prevState.map((component, i) =>
@@ -96,7 +95,6 @@ export default function Section(props) {
   useEffect(() => {
 
     props.updateData(dynamicComponents,props.number);
-    
     if (props.content?.props?.content?.contentsection) {
       Addfromupdate(props.content.props.content.contentsection);
     }

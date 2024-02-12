@@ -43,7 +43,7 @@ function Page() {
   };
 
   const updateData = (dynamicComponents, index) => {
-    // console.log("index uploading");
+     console.table(dynamicComponents);
     setData((prevData) => {
       const newData = [...prevData];
       const existingObject = newData[index];
@@ -75,7 +75,7 @@ function Page() {
 
     const tags = await getTags(); // henter tags
     // console.log(tags);
-    // changecontentsate();
+  
      console.log(data);
 
     //rekursiv
@@ -85,7 +85,6 @@ function Page() {
       let sectoins = section.sectioncontent;
       let contentsection = [];
       sectoins.forEach((datafield) => {
-        console.log(datafield);
         contentsection.push({
           content: datafield.value,
           type: datafield.type.name,
@@ -106,11 +105,10 @@ function Page() {
     if (error) {
       return console.log(error);
     }
-    console.log(result);
+    // console.log(result);
     return router.push("/frontpage");
   };
   // --------------------------------------------------------------
-  useEffect(() => {}, [handleForm]);
 
   ////dynamic content
   if (user != null) {

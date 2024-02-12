@@ -82,8 +82,8 @@ function Page(props) {
   useEffect(() => {
     // Update the document title using the browser API
     handleGet();
-  }, [data.length]);
-  
+    console.log("i just ran")
+  }, []);
 
   const handleDelete = async (event) => {
     const { result, error } = await deletePost("posts", search);

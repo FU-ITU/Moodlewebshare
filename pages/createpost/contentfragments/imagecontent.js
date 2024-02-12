@@ -5,35 +5,25 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 export default function Imagecontent(props) {
  
-  const handleRemove = () => {
-    props.onRemove();
-  };
-
-  const ShowPreview =  (e) =>{
-    var src = URL.createObjectURL(e.target.files[0]);
-    var preview = document.getElementById("image-preview-update-" + props.number)
-    preview.src = src;
-    preview.style.display = "flex"
-
-  }
 
   const handleFileChange = async (e) => {
+
+    console.log(props)
      //image preview
      ShowPreview(e);
 
      console.log("handle")
     
-
     const file = e.target.files[0];
+    props.onUpdate(file.name, props.data)
     if (file) {
+      props.onUpdate(file.name, props.data)
       const formData = new FormData();
       formData.append("image", file);
-
+     
       console.log(file);
-      props.onUpdate(file.name, props.data);
-
-      try {
    
+      try {
         const response = await fetch("/api/upload", {
           method: "POST",
           body: formData,
@@ -45,6 +35,20 @@ export default function Imagecontent(props) {
       }
     }
   };
+  const handleRemove = () => {
+    props.onRemove();
+  };
+
+  const ShowPreview =  (e) =>{
+    
+    var src = URL.createObjectURL(e.target.files[0]);
+    var preview = document.getElementById("image-preview-update-" + props.number)
+    preview.src = src;
+    preview.style.display = "flex"
+
+  }
+
+  
 
   return (
     <>
