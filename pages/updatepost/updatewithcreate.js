@@ -188,7 +188,7 @@ function Page() {
         <div className="frontpage-grid">    
           <div className="wrapper-create">
           <button onClick={handleDelete}>Delete</button>
-          <button onClick={(e) =>handleGet()}> Hent data</button>
+          <button onClick={(e) =>handleGet()}> Se gamle værdier</button>
             <div className="form-wrapper" id="form-wrapper">
               <h1>Opdater</h1>
               <form onSubmit={handleForm} className="form">
