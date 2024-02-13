@@ -89,11 +89,46 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 
   button {
-    border-color: #168b7c !important;
-    font-size: 0.7em !important;
+
+    /* CSS */
+  
+      background-color: #fff;
+      border: 1px solid #d5d9d9;
+      border-radius: 4px;
+      box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+      box-sizing: border-box;
+      color: #0f1111;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 0.8em;
+      padding: 1 1 2;
+      line-height: 29px;
+      position: relative;
+      text-align: center;
+      text-decoration: none;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      vertical-align: middle;
+      width: auto;
+      margin:0.5%;
+      border-color: #158B7C !important;
+      
+    }
+    
+    button:hover {
+      background-color: #f7fafa;
+    
+    }
+    
+    button:focus {
+      border-color: #168b7c;
+      box-shadow: rgba(169, 172, 172, 0.5) 0 2px 5px 0;
+      outline: 0;
+    }
   }
 
-}
+
 
 .se-mere-button{
   text-decoration: none;
@@ -456,12 +491,14 @@ input[type='checkbox'] {
       .tag-template,
       .tag-quiz,
       .tag-video {
-        padding: 1.5%;
+        padding: 0 10px 0 !important;
         border: solid;
+        font-size: 0.9em;
         border-width: 1.3px;
         margin: 1%;
-        border-radius: 6px;
+        border-radius: 18px;
         text-align: center;
+        height: auto;
       }
 
 
