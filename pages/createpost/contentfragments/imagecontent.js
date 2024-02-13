@@ -17,10 +17,10 @@ export default function Imagecontent(props) {
     const file = e.target.files[0];
     props.onUpdate(file.name, props.data)
     if (file) {
-      props.onUpdate(file.name, props.data)
+      
       const formData = new FormData();
       formData.append("image", file);
-     
+      props.onUpdate(file.name, props.data)
       console.log(file);
    
       try {
@@ -37,6 +37,7 @@ export default function Imagecontent(props) {
   };
   const handleRemove = () => {
     props.onRemove();
+    props.onUpdate("", props.data)
   };
 
   const ShowPreview =  (e) =>{

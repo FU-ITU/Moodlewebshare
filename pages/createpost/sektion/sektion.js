@@ -104,8 +104,9 @@ export default function Section(props) {
     if (props.content?.props?.content?.contentsection) {
       Addfromupdate(props.content.props.content.contentsection);
     }
+    console.log("hej", "useEffect")
 
-  }, []);
+  }, [setDynamicComponents]);
   
 
   

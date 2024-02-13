@@ -13,6 +13,7 @@ export default function Htmlcontent(props) {
 
   const handleRemove = () => {
     props.onRemove();
+    props.onUpdate("", props.data);
   };
 
   return (
