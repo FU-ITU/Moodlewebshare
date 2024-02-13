@@ -189,6 +189,7 @@ function Page() {
           <div className="wrapper-create">
           <button onClick={handleDelete}>Delete</button>
           <button onClick={(e) =>handleGet()}> Se gamle værdier</button>
+          <button type="submit">Gem</button>
             <div className="form-wrapper" id="form-wrapper">
               <h1>Opdater</h1>
               <form onSubmit={handleForm} className="form">
@@ -266,7 +267,7 @@ function Page() {
                   className="button-create-sticky-footer-update"
                   id="button-create-sticky-footer"
                 >
-                  <button type="submit">Opdater</button>
+                 
                 </div>
                 <div className="create-section">
                   {sections.map((sectionItem, index) => (
