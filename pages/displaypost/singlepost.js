@@ -40,9 +40,16 @@ function DisplaySinglePost({ props }) {
               <h3> Section {index + 1}</h3>
               {section.contentsection.map((contentItem, contentIndex) => (
                 <div key={contentIndex}>
+                  {contentItem.type === "Sectionheading" && (
+                    <h1>{contentItem.content}</h1>
+                  )}
+
+                  {contentItem.type === "Sectionsubheading" && (
+                    <h4>{contentItem.content}</h4>
+                  )}
+
                   {contentItem.type === "Imagecontent" && (
                     <div>
-                      <h4>Image content</h4>
                       <img
                         src={"../images/" + contentItem.content}
                         alt="Image"
@@ -52,7 +59,6 @@ function DisplaySinglePost({ props }) {
 
                   {contentItem.type === "Htmlcontent" && (
                     <div>
-                      <h4>Html content</h4>
                       <p>{contentItem.content}</p>
                     </div>
                   )}

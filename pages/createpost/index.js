@@ -144,6 +144,7 @@ function Page() {
                   id="kategori1"
                   name="kategori"
                   value="quiz"
+                  required
                 />
 
                 <label htmlFor="kategori2"> Template</label>
@@ -153,6 +154,7 @@ function Page() {
                   id="kategori2"
                   name="kategori"
                   value="template"
+                  required
                 />
                 <label htmlFor="kategori3">Video </label>
                 <input
@@ -161,6 +163,7 @@ function Page() {
                   id="kategori3"
                   name="kategori"
                   value="video"
+                  required
                 />
                 <fieldset id="fieldset">
                   <legend>Vælg tags</legend>

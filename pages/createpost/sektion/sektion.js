@@ -11,10 +11,13 @@ import ImageIcon from "@mui/icons-material/Image";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import Stack from "@mui/material/Stack";
 import Accordion from '@mui/material/Accordion';
-import AccordionActions from '@mui/material/AccordionActions';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Sectionheading from "../contentfragments/sectionheading";
+import Sectionsubheading from "../contentfragments/sectionsubheading";
+import InsertPageBreakIcon from '@mui/icons-material/InsertPageBreak';
+import TitleIcon from '@mui/icons-material/Title';
 import React, { useEffect } from "react";;
 
 export default function Section(props) {
@@ -40,7 +43,6 @@ export default function Section(props) {
     });
   
    
-
     if (dynamicComponents) {
       document.getElementById("button-create-sticky-footer").style.display =
         "flex";
@@ -61,24 +63,38 @@ export default function Section(props) {
       return newComponents;
     });
   };
-
+///switchcase til content
   const addContent = (contentType) => {
-    const newContent =
-      contentType === "html" ? (
-        <Htmlcontent></Htmlcontent>
-      ) : (
-        <Imagecontent></Imagecontent>
-      );
-    if (contentType === "html") {
-      setDynamicComponents((prevHtmlContent) => [
-        ...prevHtmlContent,
-        newContent,
-      ]);
-    } else {
-      setDynamicComponents((prevImgContent) => [...prevImgContent, newContent]);
-    }
+    let newContent;
 
-    handleClose();
+    switch (contentType) {
+      case "html":
+        newContent = <Htmlcontent></Htmlcontent>;
+        setDynamicComponents((prevContent) => [...prevContent, newContent]);
+        handleClose();
+        break;
+      case "image":
+        newContent = <Imagecontent></Imagecontent>;
+        setDynamicComponents((prevContent) => [...prevContent, newContent]);
+        handleClose();
+        break;
+        case "heading":
+          newContent = <Sectionheading></Sectionheading>;
+          setDynamicComponents((prevContent) => [...prevContent, newContent]);
+          handleClose();
+          break;
+          case "subheading":
+            newContent = <Sectionsubheading></Sectionsubheading>;
+            setDynamicComponents((prevContent) => [...prevContent, newContent]);
+            handleClose();
+            break;
+      default:
+        // Handle default case if contentType doesn't match any specific case
+        newContent = null; // Or provide a default component
+        break;
+        
+    }
+    
   };
 
 
@@ -88,16 +104,34 @@ export default function Section(props) {
     // Define an array to collect new contents
     const newDynamicComponents = [];
     sections.forEach((element) => {
-      // console.log(element);
-      const newContent =
-        element.type === "Htmlcontent" ? (
-          <Htmlcontent contentdata={element.content}></Htmlcontent>
-        ) : (
-          <Imagecontent contentdata={element.content}></Imagecontent>
-        );
+ console.log(element)
+      let newContent;
 
-      newDynamicComponents.push(newContent);
-    });
+      switch (element.type) {
+        case "Htmlcontent":
+          newContent = <Htmlcontent contentdata={element.content}></Htmlcontent>;
+          newDynamicComponents.push(newContent);
+          break;
+        case "Imagecontent":
+          newContent = <Imagecontent contentdata={element.content}></Imagecontent>;
+          newDynamicComponents.push(newContent);
+          break;
+          case "Sectionheading":
+            newContent = <Sectionheading contentdata={element.content}></Sectionheading>;
+            newDynamicComponents.push(newContent);
+            break;
+            case "Sectionsubheading":
+              newContent = <Sectionsubheading ></Sectionsubheading>;
+              newDynamicComponents.push(newContent);
+              break;
+        default:
+          // Handle default case if contentType doesn't match any specific case
+          newContent = null; // Or provide a default component
+          break;
+      
+    }
+    
+  });
 
     // After iterating through all elements, update the dynamic components state once
     setDynamicComponents([...newDynamicComponents]);
@@ -185,6 +219,14 @@ export default function Section(props) {
                 <div className="icon-link">
                   <ImageIcon onClick={() => addContent("image")}></ImageIcon>
                   <p>image</p>
+                </div>
+                <div className="icon-link">
+                <TitleIcon onClick={() => addContent("heading")}></TitleIcon>
+                  <p>Title</p>
+                </div>
+                <div className="icon-link">
+                <InsertPageBreakIcon onClick={() => addContent("subheading")}></InsertPageBreakIcon>
+                  <p>Subtitle</p>
                 </div>
                 <div className="icon-link">
                   <UploadFileIcon></UploadFileIcon>
