@@ -242,6 +242,7 @@ input[type='checkbox'] {
       }
 
       .add-section-button {
+        margin-top: 1%;
         svg {
           color: #042B43ed !important;
         }
@@ -311,6 +312,7 @@ input[type='checkbox'] {
 
 
   .create-section {
+    width: 100%;
     display: flex;
     justify-content: stretch;
     flex-wrap: wrap;
@@ -321,6 +323,12 @@ input[type='checkbox'] {
       width: 100%;
       border-radius: 10px;
       margin-top: 2%;
+
+    
+    }
+
+    .section-content{
+      width: 100%;
     }
 
     button {
@@ -329,9 +337,9 @@ input[type='checkbox'] {
 
 
 
-    div {
+    /* div {
       width: 100%;
-    }
+    } */
 
   }
 
@@ -341,8 +349,9 @@ input[type='checkbox'] {
     justify-content: center;
     position: fixed;
     height: 4%;
+    
     bottom: 0;
-    width: 57%;
+    width: 56%;
 
     border-radius: 4px;
     z-index: 999999;

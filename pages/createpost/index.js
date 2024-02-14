@@ -43,8 +43,7 @@ function Page() {
   };
 
   const updateData = (dynamicComponents, index) => {
-
-    console.log("updatedfromcreate",dynamicComponents)
+    console.log("updatedfromcreate", dynamicComponents);
     setData((prevData) => {
       const newData = [...prevData];
       const existingObject = newData[index];
@@ -70,14 +69,13 @@ function Page() {
     });
   };
 
-
   const handleForm = async (event) => {
     event.preventDefault();
 
     const tags = await getTags(); // henter tags
     // console.log(tags);
-  
-     console.log("initial-data", data);
+
+    console.log("initial-data", data);
 
     //rekursiv
     let filterdata = [];
@@ -85,7 +83,7 @@ function Page() {
       console.log(section);
       let sectoins = section.sectioncontent;
       let contentsection = [];
-      console.log(typeof sections)
+      console.log(typeof sections);
 
       sectoins.forEach((datafield) => {
         contentsection.push({
@@ -96,7 +94,7 @@ function Page() {
       filterdata.push({ contentsection });
     });
 
-    console.log("finalarray",filterdata);
+    console.log("finalarray", filterdata);
     const { result, error } = await addData("posts", user, {
       creator: user["email"],
       category: category,
@@ -115,7 +113,7 @@ function Page() {
 
   ////dynamic content
   if (user != null) {
-   let whoami = user["email"];
+    let whoami = user["email"];
     return (
       <>
         <div className="frontpage-grid">
@@ -145,7 +143,7 @@ function Page() {
                   type="radio"
                   id="kategori1"
                   name="kategori"
-                  value="kategori1"
+                  value="quiz"
                 />
 
                 <label htmlFor="kategori2"> Template</label>
@@ -154,7 +152,7 @@ function Page() {
                   type="radio"
                   id="kategori2"
                   name="kategori"
-                  value="kategori2"
+                  value="template"
                 />
                 <label htmlFor="kategori3">Video </label>
                 <input
@@ -162,7 +160,7 @@ function Page() {
                   type="radio"
                   id="kategori3"
                   name="kategori"
-                  value="kategori3"
+                  value="video"
                 />
                 <fieldset id="fieldset">
                   <legend>Vælg tags</legend>
@@ -193,15 +191,10 @@ function Page() {
                     ></input>
                   </div>
                 </fieldset>
-                <div
-                  className="button-create-sticky-footer"
-                  id="button-create-sticky-footer"
-                >
-                  <button type="submit">Opret</button>
-                </div>
+
                 <div className="create-section">
                   {sections.map((sectionItem, index) => (
-                    <div key={index}>
+                    <div className="section-content" key={index}>
                       {React.cloneElement(sectionItem, {
                         number: index,
                         updateData: updateData,
@@ -214,6 +207,13 @@ function Page() {
                       </Button>
                     </div>
                   ))}
+
+                  <div
+                    className="button-create-sticky-footer"
+                    id="button-create-sticky-footer"
+                  >
+                    <button type="submit">Opret</button>
+                  </div>
                 </div>
               </form>
 

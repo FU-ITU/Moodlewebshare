@@ -10,6 +10,11 @@ import CodeIcon from "@mui/icons-material/Code";
 import ImageIcon from "@mui/icons-material/Image";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import Stack from "@mui/material/Stack";
+import Accordion from '@mui/material/Accordion';
+import AccordionActions from '@mui/material/AccordionActions';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import React, { useEffect } from "react";;
 
 export default function Section(props) {
@@ -125,12 +130,18 @@ export default function Section(props) {
   };
 
   return (
-    <>
-      {}
+  
       <section className="section">
+        <Accordion className="section-content" defaultExpanded >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1-content"
+          id="panel1-header"
+        >
         <h3> Dette er section {props.number + 1}</h3>
-        <div className="section-content">
-          {dynamicComponents.map((ChildComponent, index) =>
+        </AccordionSummary>
+        <AccordionDetails>
+        {dynamicComponents.map((ChildComponent, index) =>
             React.cloneElement(ChildComponent, {
               key: index,
               data: dynamicComponents,
@@ -141,8 +152,9 @@ export default function Section(props) {
               value: ChildComponent.value,
             })
           )}
-        </div>
 
+       
+        </AccordionDetails>
         <Stack direction="column" spacing={2}>
           <Button
             variant="outlined"
@@ -152,6 +164,9 @@ export default function Section(props) {
             Tilføj content til section {props.number + 1}
           </Button>
         </Stack>
+      </Accordion>
+     
+       
         <Modal
           open={open}
           onClose={handleClose}
@@ -179,6 +194,6 @@ export default function Section(props) {
           </Box>
         </Modal>
       </section>
-    </>
+    
   );
 }

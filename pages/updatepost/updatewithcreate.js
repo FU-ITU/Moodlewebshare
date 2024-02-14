@@ -271,7 +271,7 @@ function Page() {
                 </div>
                 <div className="create-section">
                   {sections.map((sectionItem, index) => (
-                    <div key={index}>
+                    <div key={index} className="section-content">
                       {React.cloneElement(sectionItem, {
                         number: index,
                         updateData: updateDataupdate,

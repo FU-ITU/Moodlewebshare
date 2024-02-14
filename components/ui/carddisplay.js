@@ -14,7 +14,7 @@ export default function Carddisplay({ props }) {
         <Card sx={{ maxWidth: 4 / 4 }}>
           <CardActionArea>
             {props.data.category &&
-              props.data.category.includes("kategori1") && (
+              props.data.category.includes("quiz") && (
                 <CardMedia
                   component="img"
                   height="30"
@@ -24,7 +24,7 @@ export default function Carddisplay({ props }) {
                 />
               )}
             {props.data.category &&
-              props.data.category.includes("kategori2") && (
+              props.data.category.includes("template") && (
                 <CardMedia
                   component="img"
                   height="30"
@@ -35,7 +35,7 @@ export default function Carddisplay({ props }) {
               )}
 
             {props.data.category &&
-              props.data.category.includes("kategori3") && (
+              props.data.category.includes("video") && (
                 <CardMedia
                   component="img"
                   height="30"
