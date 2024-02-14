@@ -19,7 +19,7 @@ export default function Htmlcontent(props) {
   return (
     <>
       <div className="html-content-heading">
-        <h4>Nr. {props.number+1}</h4>
+        <h4>Nr. {props.section+1}.{props.number + 1}</h4>
         <Stack direction="row" spacing={1}>
           <DeleteIcon onClick={handleRemove}></DeleteIcon>
         </Stack>
@@ -43,7 +43,7 @@ export default function Htmlcontent(props) {
           name="text"
           rows="15"
           cols="50"
-          id={props.number}
+          id={props.section + props.number}
           placeholder={props.contentdata}
           defaultValue={props.contentdata}
         ></textarea>

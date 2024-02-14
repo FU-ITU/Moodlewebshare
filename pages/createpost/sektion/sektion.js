@@ -149,6 +149,7 @@ export default function Section(props) {
                 updateDynamicComponent(index, updatedData),
               onRemove: () => removeComponent(index),
               number: index,
+              section: props.number,
               value: ChildComponent.value,
             })
           )}

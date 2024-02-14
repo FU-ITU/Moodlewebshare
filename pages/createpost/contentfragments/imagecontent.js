@@ -5,7 +5,7 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 export default function Imagecontent(props) {
  
-
+console.log(props)
   const handleFileChange = async (e) => {
 
     console.log(props)
@@ -43,7 +43,7 @@ export default function Imagecontent(props) {
   const ShowPreview =  (e) =>{
     
     var src = URL.createObjectURL(e.target.files[0]);
-    var preview = document.getElementById("image-preview-update-" + props.number)
+    var preview = document.getElementById("image-preview-update-" + props.section + props.number)
     preview.src = src;
     preview.style.display = "flex"
 
@@ -54,7 +54,7 @@ export default function Imagecontent(props) {
   return (
     <>
       <div className="html-content-heading">
-        <h4>Nr. {props.number + 1}</h4>
+        <h4>Nr. {props.section+1}.{props.number + 1}</h4>
         <div>
           <Stack direction="row" spacing={1}>
             <DeleteIcon onClick={handleRemove}></DeleteIcon>
@@ -76,7 +76,7 @@ export default function Imagecontent(props) {
           />
         </div>
         <img
-          id={"image-preview-update-" + props.number}
+          id={"image-preview-update-" + props.section + props.number}
           className="image-preview"
           src={"../images/" + props.contentdata}
         />
