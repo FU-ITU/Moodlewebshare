@@ -7,8 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <main>
-      <div className="frontpage-grid">
+      
         <div className="frontpage-content">
           <div className="frontpage-left">
             <h1>Moodlewebshare</h1>
@@ -24,15 +23,13 @@ export default function Home() {
           <div className="frontpage-right ">
             <img
               alt="frontpage"
-              src="./fuinner.png"
-              width="600"
-              height="300"
+              src="./background-fu.png"
               className="fuinner rotate"
             ></img>
 
           </div>
         </div>
-      </div>
-    </main>
+      
+  
   );
 }
