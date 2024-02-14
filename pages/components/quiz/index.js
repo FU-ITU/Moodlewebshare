@@ -1,79 +1,97 @@
 import { useAuthContext } from "@/firebase/auth/authcontext";
 import getDoument from "@/firebase/database/getdata";
-import Carddisplay from "@/components/ui/carddisplay";
-import { useEffect, useState } from "react";
+import DisplayPost from "@/pages/displaypost";
 import Search from "@/components/ui/search";
+import NavsideSubpage from "@/components/nav/navside-subpage";
+import { useState, useEffect } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 
 ///get data from search
 
-export default function quizPage({ props }) {
-  // const [Data, setData] = useState([]);
-  // const user = useAuthContext();
-  // let [Query, setQuery] = useState([]);
-  // let whoami;
+export default function Quiz({ props }) {
+  const [Data, setData] = useState([]);
+  const user = useAuthContext();
+  let [Query, setQuery] = useState([]);
+  const nav = ["quiz"];
+  let whoami;
 
-  // const changeQuery = (f) => {
-  //   setQuery(f);
-  //   console.log(Query);
-  // };
-  // ///datachange effect
-  // useEffect(() => {
-  //   async function getData() {
-  //     const fetch = await getDoument("all");
-  //     setData(fetch);
-  //   }
-  //   getData();
-  // }, []);
+  const changeQuery = (f) => {
+    setQuery(f);
+    console.log(Query);
+  };
+  ///datachange effect
+  useEffect(() => {
+    async function getData() {
+      const fetch = await getDoument("quiz");
+      setData(fetch);
+    }
+    getData();
+  }, []);
 
-  // if (user != null) {
-  //   whoami = user["email"];
-  //   if (Data.result != null) {
-  //     if (Query.length != 0) {
-  //       return (
-  //         <>
-  //           <div className="search-panel">
-  //             <Search data={Data} query={changeQuery}></Search>
-  //           </div>
-           
-  //           <div className="frontpage-grid">
-  //           <h2 className="center-h1">Components</h2>
-  //             {Query.map(function (Query, key = 0) {
-  //               key++;
-  //               return <Carddisplay key={key} props={Query}></Carddisplay>;
-  //             })}
-  //           </div>
-  //         </>
-  //       );
-  //     } else {
-  //     }
-  //     return (
+  if (user != null) {
+    whoami = user["email"];
+    if (Data.result != null) {
+      if (Query.length != 0) {
+        return (
+          <>
+            <div className="search-panel">
+              <Search data={Data} query={changeQuery}></Search>
+            </div>
 
-  //       ///check efter Kategori og inddel
-  //       <>
-  //         <div className="search-panel">
-  //           <Search data={Data} query={changeQuery}></Search>
-  //         </div>
-          
-  //         <div className="frontpage-grid">
-  //         <h2 className="center-h1">Components</h2>
-  //           {Data.result.map(function (Data, key = 0) {
-  //             key++;
-  //             return <Carddisplay key={key} props={Data}></Carddisplay>;
-  //           })}
-  //         </div>
-  //       </>
-  //     );
-  //   } else {
-  //     return (
-  //       <>
-  //         <h1>hej! {whoami}, Her er intet data </h1>
-  //       </>
-  //     );
-  //   }
-  // } else whoami = "Du er ikke logget ind ";
-  // return (
-  //   <>
-  //     <h1>{whoami} </h1>
-  //   </>
-  // );
+            <div className="frontpage-grid">
+            <h2 className="center-h1">Dine resultater:</h2>
+              <div className="page-content">
+                <div className="page-content-link-grid">
+                  {Query.map(function (Query, key = 0) {
+                    key++;
+                    console.log(Data.result.name);
+                    // nav.push(Data.data.name);
+                    return <DisplayPost key={key} props={Query}></DisplayPost>;
+                  })}
+                </div>
+                {/* <NavsideSubpage props={nav} ></NavsideSubpage> */}
+              </div>
+            </div>
+          </>
+        );
+      } else {
+      }
+      return (
+        <>
+          <div className="search-panel">
+            <Search data={Data} query={changeQuery}></Search>
+          </div>
+       
+          <div className="frontpage-grid">
+          <h1 className="center-h1">Templates</h1>
+            <div className="page-content">
+              <div className="page-content-link-grid">
+                {Data.result.map(function (Data, key = 0) {
+                  key++;
+                  nav.push(Data.data.name);
+
+                  return <DisplayPost key={key} props={Data}></DisplayPost>;
+                })}
+              </div>
+
+              <NavsideSubpage props={nav}></NavsideSubpage>
+            </div>
+          </div>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <div className="frontpage-grid">
+            <CircularProgress color="inherit" />
+          </div>
+        </>
+      );
+    }
+  } else whoami = "Du er ikke logget ind ";
+  return (
+    <>
+      <h1>{whoami} </h1>
+    </>
+  );
 }

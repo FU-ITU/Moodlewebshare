@@ -12,7 +12,7 @@ export default function Templates({ props }) {
   const [Data, setData] = useState([]);
   const user = useAuthContext();
   let [Query, setQuery] = useState([]);
-  const nav = [];
+  const nav = ["templates"];
   let whoami;
 
   const changeQuery = (f) => {
@@ -74,7 +74,7 @@ export default function Templates({ props }) {
                 })}
               </div>
 
-              <NavsideSubpage props={nav}></NavsideSubpage>
+              <NavsideSubpage props={nav} page="template" ></NavsideSubpage>
             </div>
           </div>
         </>

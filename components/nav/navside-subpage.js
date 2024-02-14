@@ -9,7 +9,9 @@ export default function NavsideSubpage({ props }) {
             {/* Toplayer --> sub catagories --> subcategories  */}
             {props.map(function (name, key = 0) {
               key++;
-              let link = "/components/templates#" + name;
+              // let link = "/components/templates#" + name;
+              let link = "/components/" + props[0] +"#" + name;
+              // http://localhost:3000/components/templates#find
               return (
                 <Link className="nav-link" key={key} href={link}>
                   <p>{name}</p>

@@ -54,7 +54,7 @@ export default async function getDoument(datacollection, id) {
       try {
         let dbcollection = collection(db, "posts");
         let result = await getDocs(
-          query(dbcollection, where("category", "==", "kategori2")) 
+          query(dbcollection, where("category", "==", "template")) 
         );
 
         result.forEach((doc) => {
@@ -62,10 +62,45 @@ export default async function getDoument(datacollection, id) {
         });
         result = data;
         return { result };
+        
       } catch (e) {
         console.error("Error:", e);
         throw e; // Re-throw the error to handle it in the calling code
       }
+      case "quiz":
+        try {
+          let dbcollection = collection(db, "posts");
+          let result = await getDocs(
+            query(dbcollection, where("category", "==", "quiz")) 
+          );
+  
+          result.forEach((doc) => {
+            data.push({ id: doc.id, data: doc.data() });
+          });
+          result = data;
+          return { result };
+          
+        } catch (e) {
+          console.error("Error:", e);
+          throw e; // Re-throw the error to handle it in the calling code
+        }
+        case "video":
+          try {
+            let dbcollection = collection(db, "posts");
+            let result = await getDocs(
+              query(dbcollection, where("category", "==", "video")) 
+            );
+    
+            result.forEach((doc) => {
+              data.push({ id: doc.id, data: doc.data() });
+            });
+            result = data;
+            return { result };
+            
+          } catch (e) {
+            console.error("Error:", e);
+            throw e; // Re-throw the error to handle it in the calling code
+          }
 
     default:
       break;

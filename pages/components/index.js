@@ -44,6 +44,7 @@ export default function ComponentsPage({ props }) {
           
 
           <div className="component-quiz">
+          <Link href="/components/quiz">
             <Card xl={{ maxWidth: 4 / 4 }}>
               <CardActionArea>
                 <CardMedia
@@ -59,6 +60,7 @@ export default function ComponentsPage({ props }) {
                 </CardContent>
               </CardActionArea>
             </Card>
+            </Link>
           </div>
           <div className="component-video">
             <Card xl={{ maxWidth: 4 / 4 }}>
@@ -76,6 +78,7 @@ export default function ComponentsPage({ props }) {
                 </CardContent>
               </CardActionArea>
             </Card>
+          
           </div>
         </div>
         {/* ///dynamic fetch og render  */}
